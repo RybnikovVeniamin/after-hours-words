@@ -1,0 +1,1198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Practice the English words you caught on YouTube, as sentences you can use at work.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F3F4F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10151E" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="After Hours">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<title>After Hours Words</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F3F4F7; --surface:#FFFFFF; --surface-2:#E9EBF0; --ink:#171F33; --muted:#5B6578; --line:#D6DAE3;
+  --hl:#F6D64A; --hl-ink:#171F33; --hl-soft:#FBEFB0;
+  --good:#2E8B5A; --good-soft:#DDF2E6; --warn:#B8731F; --warn-soft:#FBEBD2; --bad:#C24747; --bad-soft:#F8DEDE;
+  --on-warn:#FFFFFF;
+  --shadow:0 1px 2px rgba(23,31,51,.06),0 8px 24px -12px rgba(23,31,51,.18);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Public Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --nav-h:58px;
+  padding-top:env(safe-area-inset-top,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#10151E; --surface:#181F2B; --surface-2:#212A38; --ink:#E9EDF4; --muted:#97A2B6; --line:#2B3545;
+    --hl:#E4C64B; --hl-ink:#10151E; --hl-soft:#3A3418;
+    --good:#5CC48B; --good-soft:#173324; --warn:#E0A24B; --warn-soft:#3A2B14; --bad:#E57373; --bad-soft:#3C1E1E;
+    --on-warn:#10151E;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#10151E; --surface:#181F2B; --surface-2:#212A38; --ink:#E9EDF4; --muted:#97A2B6; --line:#2B3545;
+  --hl:#E4C64B; --hl-ink:#10151E; --hl-soft:#3A3418;
+  --good:#5CC48B; --good-soft:#173324; --warn:#E0A24B; --warn-soft:#3A2B14; --bad:#E57373; --bad-soft:#3C1E1E;
+  --on-warn:#10151E;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{overflow-x:clip}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+:focus-visible{outline:2px solid var(--hl);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:4px}
+a{color:inherit;text-underline-offset:2px}
+
+.app{max-width:1180px;margin:0 auto;padding-block:20px 40px;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"top top" "nav main" "side main";grid-template-rows:auto auto 1fr;gap:16px 24px;align-items:start}
+
+/* header */
+.top{grid-area:top;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.brand h1{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.brand h1 mark{background:linear-gradient(transparent 55%,var(--hl) 55%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 2px}
+.brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.stats{display:flex;gap:18px;font-variant-numeric:tabular-nums}
+.stat{display:flex;flex-direction:column;align-items:flex-start}
+.stat b{font-family:var(--display);font-size:22px;font-weight:700;line-height:1}
+.stat span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.stat.due b{color:var(--warn)}
+
+/* nav: segmented on desktop, tab bar on phones */
+.nav{grid-area:nav;display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:10px}
+.nav button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;position:relative;border:0;background:transparent;border-radius:7px;padding:8px 10px;font-weight:600;color:var(--muted)}
+.nav button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.nav svg{display:none;width:24px;height:24px;flex:none}
+.badge{font:700 11px/1 var(--body);font-variant-numeric:tabular-nums;background:var(--warn);color:var(--on-warn);border-radius:999px;padding:3px 6px;min-width:18px;text-align:center}
+.lbl-narrow{display:none}
+
+/* word list */
+.side{grid-area:side;display:flex;flex-direction:column;gap:12px;min-width:0}
+.search{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:9px 12px;-webkit-appearance:none;appearance:none}
+.list{list-style:none;margin:0;padding:0 2px 0 0;display:flex;flex-direction:column;gap:2px;max-height:68vh;overflow:auto}
+.list li button{width:100%;text-align:left;border:0;background:transparent;border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.list li button[aria-current="true"]{background:var(--surface);box-shadow:var(--shadow)}
+.li-text{display:flex;flex-direction:column;min-width:0}
+.list .w{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prev{display:none;font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pad{padding:8px 10px}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--line)}
+.dot.due{background:var(--warn)} .dot.learned{background:var(--good)} .dot.new{background:var(--hl)}
+.legend{display:flex;gap:12px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+
+/* main column */
+.main{grid-area:main;min-width:0;display:flex;flex-direction:column;gap:16px}
+.back{display:none;align-self:flex-start;border:0;background:transparent;color:var(--ink);font-weight:600;padding:8px 2px;min-height:44px;gap:4px;align-items:center}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.headword{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+.headword h2{font-size:34px;font-weight:700;letter-spacing:-.02em}
+.pos{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
+.heard{font-size:12px;color:var(--muted);margin-left:auto}
+.meaning{font-size:17px;margin:14px 0 4px;max-width:62ch}
+.gloss{color:var(--muted);font-style:italic;margin:0 0 8px}
+.examples{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;max-width:66ch}
+.examples li{padding:10px 14px;border-left:3px solid var(--hl);background:var(--surface-2);border-radius:0 8px 8px 0}
+mark{background:var(--hl-soft);color:inherit;border-radius:3px;padding:0 2px}
+.tip{margin:14px 0 0;padding:10px 14px;border-radius:8px;background:var(--hl-soft);font-size:14px;max-width:66ch}
+.tip b{font-weight:600}
+.label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 8px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mt{margin-top:12px}
+.center{justify-content:center}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 14px;font-weight:600;min-height:38px}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.hl{background:var(--hl);color:var(--hl-ink);border-color:var(--hl)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted)}
+.btn.big{min-height:52px;padding:12px 22px;font-size:16px}
+.btn.wide{width:100%}
+.btn:disabled{opacity:.5;cursor:default}
+.danger{color:var(--bad)!important}
+.link{border:0;background:none;padding:0;color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+textarea,.field{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg);line-height:1.5}
+textarea{min-height:84px;resize:vertical}
+.field{padding:9px 12px;border-radius:8px}
+textarea:focus,.field:focus{border-color:var(--ink);outline:none}
+.feedback{margin-top:12px;padding:14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);max-width:70ch}
+.feedback .verdict{font-weight:700;margin-bottom:6px}
+.feedback.natural .verdict{color:var(--good)} .feedback.ok .verdict{color:var(--warn)} .feedback.off .verdict{color:var(--bad)}
+.feedback p{margin:4px 0}
+.feedback .alt{font-style:italic;color:var(--muted)}
+.history{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.history li::before{content:"✓ ";color:var(--good)}
+.thinking{color:var(--muted);font-style:italic;margin:12px 0 0}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.lead{margin:0 0 10px}
+
+/* review */
+.card.flash{position:relative}
+.review-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.progress{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--hl);transition:width .3s}
+.prompt{font-size:22px;font-family:var(--display);font-weight:500;margin:18px 0 10px;max-width:62ch;line-height:1.3}
+.prompt .gap{display:inline-block;min-width:5ch;border-bottom:2px solid var(--hl);vertical-align:bottom}
+.answer{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--bg);font-size:17px}
+.result{margin-top:12px;padding:12px 14px;border-radius:10px}
+.result.right{background:var(--good-soft)} .result.wrong{background:var(--bad-soft)} .result.neutral{background:var(--surface-2)}
+.result .ex{display:block;margin-top:6px;color:var(--muted)}
+.grades{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.grades button{padding:12px 8px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:600}
+.grades button small{color:var(--muted);font-weight:400}
+.grades button.suggest{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:6px}
+.opt{display:flex;align-items:center;gap:10px;text-align:left;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:600;font-size:16px;min-height:52px}
+.opt kbd{font:500 11px var(--mono);color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+.opt.right{background:var(--good-soft);border-color:var(--good)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.dim{opacity:.5}
+.opt:disabled{cursor:default;color:inherit}
+.reveal{margin-top:8px}
+.swipe-hint{display:none;text-align:center;margin:10px 0 0}
+.card.swipeable{touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.card.swipe-right{border-color:var(--good)} .card.swipe-left{border-color:var(--bad)}
+.card.swipe-right::after,.card.swipe-left::after{position:absolute;top:14px;padding:4px 10px;border:2px solid currentColor;border-radius:8px;background:var(--surface);font:700 13px/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase}
+.card.swipe-right::after{content:"Good";left:14px;color:var(--good)}
+.card.swipe-left::after{content:"Again";right:14px;color:var(--bad)}
+.start{text-align:center;padding:36px 22px}
+.start h3{font-size:24px;margin-bottom:8px}
+.start p{max-width:46ch;margin:0 auto}
+.answer-by{display:flex;flex-direction:column;align-items:center;gap:8px;margin:20px 0 4px}
+.answer-by .label{margin:0}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:10px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;border-radius:8px;padding:7px 16px;font-weight:600;color:var(--muted);min-height:38px}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.empty h3{font-size:22px;color:var(--ink);margin-bottom:8px}
+
+/* add + settings */
+.hint{font-size:13px;color:var(--muted);margin:8px 0 0}
+.banner{padding:10px 14px;border-radius:10px;background:var(--warn-soft);font-size:14px;margin-top:12px}
+.banner.good{background:var(--good-soft)}
+.banner.bad{background:var(--bad-soft)}
+.settings{display:grid;gap:16px;max-width:460px}
+.setting{display:flex;flex-direction:column;gap:6px;font-size:14px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;background:var(--good-soft);color:var(--good)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s;max-width:calc(100vw - 32px)}
+.toast.show{opacity:1}
+
+.btn,.opt,.grades button,.list li button,.nav button,.seg button{transition:transform .08s ease,background-color .15s,border-color .15s}
+@media (hover:hover){
+  .list li button:hover{background:var(--surface-2)}
+  .btn:hover{background:var(--surface-2)}
+  .btn.primary:hover{background:var(--ink);opacity:.9}
+  .btn.hl:hover{background:var(--hl);filter:brightness(.96)}
+  .btn.ghost:hover{background:var(--surface-2)}
+  .opt:hover:not(:disabled),.grades button:hover{background:var(--surface-2)}
+}
+@media (hover:none){
+  .kbd-hint,.opt kbd{display:none}
+  .btn:active:not(:disabled),.opt:active:not(:disabled),.grades button:active,.list li button:active,.nav button:active,.seg button:active{transform:scale(.97)}
+}
+@media (hover:none) and (pointer:coarse){.swipe-hint{display:block}}
+
+/* phones */
+@media (max-width:820px){
+  .app{grid-template-columns:minmax(0,1fr);grid-template-areas:"top" "side" "main";grid-template-rows:auto;gap:14px;padding-block:12px calc(var(--nav-h) + 28px + env(safe-area-inset-bottom,0px))}
+  .top{align-items:center;padding-bottom:10px}
+  .brand h1{font-size:22px}
+  .brand p{display:none}
+  .stats{gap:14px}
+  .stat b{font-size:18px}
+  .stat span{font-size:10px}
+  .nav{position:fixed;left:0;right:0;bottom:0;z-index:30;border-radius:0;gap:0;padding:4px max(8px,env(safe-area-inset-right,0px)) calc(4px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -8px 24px -18px rgba(0,0,0,.35)}
+  .nav button,.nav button[aria-selected="true"]{flex-direction:column;gap:2px;min-height:var(--nav-h);padding:6px 4px;font-size:11px;background:transparent;box-shadow:none}
+  .nav button[aria-selected="true"]{color:var(--ink)}
+  .nav button[aria-selected="true"] svg{color:var(--ink)}
+  .nav button[aria-selected="true"] .ic-fill{fill:var(--hl)}
+  .nav svg{display:block}
+  .nav .badge{position:absolute;top:3px;left:calc(50% + 5px)}
+  .lbl-wide{display:none} .lbl-narrow{display:inline}
+  body[data-pane="list"] .main{display:none}
+  body[data-pane="detail"] .side,body[data-pane="other"] .side{display:none}
+  .search-wrap{position:sticky;top:0;z-index:5;background:var(--bg);padding-block:4px 8px;margin-bottom:-8px}
+  .list{max-height:none;overflow:visible;gap:0}
+  .list li + li button{border-top:1px solid var(--line);border-radius:0}
+  .list li button,.list li button[aria-current="true"]{padding:11px 4px;min-height:58px;background:transparent;box-shadow:none}
+  .prev{display:block}
+  .back{display:inline-flex}
+  input,textarea,select,.field,.search,.answer{font-size:16px}
+  .card{padding:18px;border-radius:16px}
+  .headword h2{font-size:28px}
+  .heard{margin-left:0;flex-basis:100%}
+  .prompt{font-size:21px}
+  .options{grid-template-columns:1fr}
+  .opt{min-height:56px}
+  .grades button{min-height:64px;font-size:16px}
+  .btn{min-height:44px;padding:10px 16px}
+  .btn.big{min-height:54px}
+  .start{padding:28px 18px}
+  .toast{bottom:calc(var(--nav-h) + 20px + env(safe-area-inset-bottom,0px))}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <h1>After <mark>Hours</mark> Words</h1>
+      <p>Words you caught on YouTube, turned into sentences you can use at work.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <nav class="nav" role="tablist" id="nav" aria-label="Sections">
+    <button role="tab" data-view="learn" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="ic-fill" fill="none" d="M5 4.5h12.5a1.5 1.5 0 0 1 1.5 1.5v13.5H6.5A1.5 1.5 0 0 1 5 18z"/><path d="M5 18a1.5 1.5 0 0 1 1.5-1.5H19"/><path d="M9 8.5h6M9 11.5h4"/></svg>
+      <span class="lbl-wide">Learn</span><span class="lbl-narrow">Words</span>
+    </button>
+    <button role="tab" data-view="review" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="ic-fill" fill="none" x="3.5" y="7" width="13" height="13.5" rx="2"/><path d="M8 3.5h10.5a2 2 0 0 1 2 2V16"/></svg>
+      <span>Review</span><b class="badge" id="due-badge" hidden></b>
+    </button>
+    <button role="tab" data-view="add" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle class="ic-fill" fill="none" cx="12" cy="12" r="8.5"/><path d="M12 8.2v7.6M8.2 12h7.6"/></svg>
+      <span>Add</span>
+    </button>
+  </nav>
+
+  <aside class="side" id="side">
+    <div class="search-wrap"><input class="search" id="search" type="search" placeholder="Find a word…" aria-label="Find a word" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></div>
+    <ul class="list" id="list"></ul>
+    <div class="legend"><span><i class="dot new"></i>new</span><span><i class="dot due"></i>due</span><span><i class="dot learned"></i>learned</span><span><i class="dot"></i>scheduled</span></div>
+  </aside>
+
+  <main class="main" id="main"></main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+"use strict";
+
+// ---------- helpers ----------
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const pad2 = n => String(n).padStart(2, "0");
+const ymd = d => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+const today = () => ymd(new Date());
+const addDays = n => { const d = new Date(); d.setDate(d.getDate() + n); return ymd(d); };
+const slugify = w => String(w).toLowerCase().trim().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80) || "w" + Date.now();
+const plural = (n, one, many = one + "s") => `${n} ${n === 1 ? one : many}`;
+const listJoin = a => a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+const narrowMq = matchMedia("(max-width: 820px)");
+const coarseMq = matchMedia("(pointer: coarse)");
+const IN_ARTIFACT = !!(window.claude && typeof window.claude.use === "function");
+const SESSION = 20;
+// Claude Haiku 5.5 through the Anthropic SDK, used only by the GitHub Pages copy with the viewer's own API key.
+const MODEL = "claude-haiku-5-5";
+const SDK_URL = "https://cdn.jsdelivr.net/npm/@anthropic-ai/sdk@0.133.0/+esm";
+
+// ---------- state ----------
+const state = {
+  words: {},              // slug -> word doc
+  deleted: new Set(),     // slugs removed on this device (local mode only)
+  view: narrowMq.matches ? "review" : "learn",
+  current: null, detail: false, filter: "", listScroll: 0,
+  review: null,
+  settings: { gloss: "", answer: "auto" },
+  sample: null,           // artifact runtime: Claude on the viewer's account
+  apiKey: "",             // GitHub Pages copy: viewer's own Anthropic API key
+  db: null,
+  loading: true,
+  busy: false, addResult: null, learnFb: null, moreBusy: null, keyNote: null, backupNote: null,
+  resetDrafts: new Set(),
+};
+
+// ---------- storage ----------
+const LS = { words: "ahw.words.v1", settings: "ahw.settings.v1", deleted: "ahw.deleted.v1", key: "ahw.apikey.v1" };
+function lsRead(k, d){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } }
+function lsWrite(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+function lsRemove(k){ try { localStorage.removeItem(k); } catch {} }
+function persistLocal(){ if (!state.db){ lsWrite(LS.words, state.words); lsWrite(LS.deleted, [...state.deleted]); } }
+function saveSettings(){ lsWrite(LS.settings, state.settings); }
+
+// Updates state synchronously, then writes to the shared db (artifact) or this device (GitHub Pages).
+function saveWord(doc, opts = {}){
+  doc = { ...doc, updatedAt: new Date().toISOString() };
+  state.words[doc.slug] = doc;
+  state.deleted.delete(doc.slug);
+  persistLocal();
+  if (!opts.quiet) render();
+  if (!state.db) return Promise.resolve(doc);
+  return state.db.doc("words/" + doc.slug).set(doc).then(() => doc, e => { console.warn(e); toast("Couldn't save that change. Check your connection."); return doc; });
+}
+async function writeMany(docs){
+  if (!state.db){ persistLocal(); return; }
+  let i = 0;
+  const worker = async () => { while (i < docs.length){ const d = docs[i++]; try { await state.db.doc("words/" + d.slug).set(d); } catch (e){ console.warn(e); } } };
+  await Promise.all([worker(), worker(), worker(), worker()]);
+}
+function dropWord(slug){
+  delete state.words[slug];
+  if (state.db) state.db.doc("words/" + slug).delete().catch(e => console.warn(e));
+  else { state.deleted.add(slug); persistLocal(); }
+}
+function removeWord(slug){
+  dropWord(slug);
+  if (state.current === slug){ state.current = null; state.detail = false; }
+  render();
+  if (narrowMq.matches) restoreListScroll();
+}
+
+// ---------- spaced repetition (SM-2 lite) ----------
+function freshSrs(){ return { due: today(), interval: 0, ease: 2.5, reps: 0, lapses: 0 }; }
+function grade(doc, g){
+  const s = { ...freshSrs(), ...(doc.srs || {}) };
+  if (g === "again"){ s.interval = 0; s.reps = 0; s.lapses = (s.lapses || 0) + 1; s.ease = Math.max(1.3, s.ease - .2); }
+  else {
+    s.reps = (s.reps || 0) + 1;
+    if (s.reps === 1) s.interval = g === "easy" ? 3 : 1;
+    else if (s.reps === 2) s.interval = g === "easy" ? 7 : 3;
+    else s.interval = Math.max(s.interval + 1, Math.round(s.interval * s.ease * (g === "easy" ? 1.3 : 1)));
+    if (g === "easy") s.ease = Math.min(3.2, s.ease + .15);
+  }
+  s.due = s.interval === 0 ? today() : addDays(s.interval);
+  s.last = today();
+  return { ...doc, srs: s };
+}
+const isDue = d => !d.srs || !d.srs.due || d.srs.due <= today();
+const status = d => (!d.srs || (!d.srs.reps && !d.srs.last)) ? "new" : isDue(d) ? "due" : (d.srs.interval >= 21 ? "learned" : "sched");
+const STATUS_LABEL = { new: "new", due: "due", learned: "learned", sched: "scheduled" };
+function nextIn(w, g){ const n = grade(w, g).srs.interval; return n === 0 ? "today" : n === 1 ? "1 day" : n + " days"; }
+
+// ---------- text helpers ----------
+function stemOf(word){
+  const stem = String(word).replace(/^to /i, "").split(/\s+/)[0].replace(/[^a-z]/gi, "");
+  if (stem.length < 3) return null;
+  return stem.length > 5 ? stem.slice(0, stem.length - 2) : stem.slice(0, Math.max(3, stem.length - 1));
+}
+function highlight(sentence, word){
+  const base = stemOf(word);
+  if (!base) return esc(sentence);
+  return esc(sentence).replace(new RegExp(`\\b(${base}[a-z]*)`, "ig"), "<mark>$1</mark>");
+}
+function gapify(sentence, word){
+  const base = stemOf(word);
+  if (!base || !sentence) return null;
+  const m = sentence.match(new RegExp(`\\b${base}[a-z]*`, "i"));
+  if (!m) return null;
+  return { before: sentence.slice(0, m.index), answer: m[0], after: sentence.slice(m.index + m[0].length) };
+}
+const gapHtml = (g, revealed) => `${esc(g.before)}<span class="gap">${revealed ? `<mark>${esc(g.answer)}</mark>` : ""}</span>${esc(g.after)}`;
+const norm = s => String(s).toLowerCase().replace(/^to /, "").replace(/[^a-z ]/g, "").replace(/\s+/g, " ").trim();
+function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+// ---------- rendering ----------
+const main = $("#main"), list = $("#list");
+function sortedWords(){
+  const q = state.filter.trim().toLowerCase();
+  return Object.values(state.words)
+    .filter(w => !q || w.word.toLowerCase().includes(q) || (w.meaning || "").toLowerCase().includes(q))
+    .sort((a, b) => (b.addedAt || "").localeCompare(a.addedAt || "") || a.word.localeCompare(b.word));
+}
+function render(){ renderChrome(); renderList(); renderMain(); }
+function renderChrome(){
+  const all = Object.values(state.words);
+  const due = all.filter(isDue).length, learned = all.filter(w => status(w) === "learned").length;
+  $("#stats").innerHTML = `
+    <div class="stat"><b>${all.length}</b><span>words</span></div>
+    <div class="stat due"><b>${due}</b><span>due</span></div>
+    <div class="stat"><b>${learned}</b><span>learned</span></div>`;
+  $$("#nav button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.view === state.view)));
+  const badge = $("#due-badge");
+  badge.textContent = due > 99 ? "99+" : String(due);
+  badge.hidden = !due;
+  document.body.dataset.pane = state.view !== "learn" ? "other" : (state.detail ? "detail" : "list");
+}
+function renderList(){
+  if (state.loading && !Object.keys(state.words).length){ list.innerHTML = `<li class="muted small pad">Loading your words…</li>`; return; }
+  const ws = sortedWords();
+  if (!state.current && ws.length) state.current = ws[0].slug;
+  list.innerHTML = ws.map(w => `<li><button data-slug="${esc(w.slug)}" aria-current="${w.slug === state.current}"><span class="li-text"><span class="w">${esc(w.word)}</span><span class="prev">${esc(w.meaning || "No meaning yet")}</span></span><i class="dot ${status(w)}" title="${STATUS_LABEL[status(w)]}"></i></button></li>`).join("")
+    || `<li class="muted small pad">${Object.keys(state.words).length ? "No match." : "No words yet. Add some in the Add tab."}</li>`;
+}
+// Re-rendering keeps whatever the person was typing (fields marked data-keep).
+function renderMain(){
+  const saved = $$("[data-keep]", main).map(el => ({ key: el.dataset.keep, value: el.value, focused: document.activeElement === el, s: el.selectionStart, e: el.selectionEnd }));
+  if (state.view === "learn") renderLearn();
+  else if (state.view === "review") renderReview();
+  else renderAdd();
+  for (const k of saved){
+    if (state.resetDrafts.has(k.key)) continue;
+    const el = main.querySelector(`[data-keep="${CSS.escape(k.key)}"]`);
+    if (!el) continue;
+    if (!el.value && k.value) el.value = k.value;
+    if (k.focused && !el.disabled){ el.focus({ preventScroll: true }); try { el.setSelectionRange(k.s, k.e); } catch {} }
+  }
+  state.resetDrafts.clear();
+}
+
+// ---------- learn ----------
+function renderLearn(){
+  const w = state.words[state.current];
+  const back = `<button class="back" id="btn-back">‹ All words</button>`;
+  if (!w){
+    main.innerHTML = back + (state.loading
+      ? `<section class="card empty"><p>Loading your words…</p></section>`
+      : `<section class="card empty"><h3>Nothing here yet</h3><p>Add words in the Add tab and they show up here.</p></section>`);
+    $("#btn-back").onclick = closeDetail;
+    return;
+  }
+  const ai = aiReady();
+  const fb = state.learnFb && state.learnFb.slug === w.slug ? state.learnFb : null;
+  const fbHtml = !fb ? "" : fb.busy ? `<p class="thinking">Checking…</p>` : fb.error ? `<div class="banner bad">${esc(fb.error)}</div>` : feedbackHtml(fb.result, fb.text, true);
+  main.innerHTML = `${back}
+  <section class="card">
+    <div class="headword">
+      <h2>${esc(w.word)}</h2>
+      ${w.pos ? `<span class="pos">${esc(w.pos)}</span>` : ""}
+      ${w.heard && w.heard !== w.word ? `<span class="heard">you wrote: “${esc(w.heard)}”</span>` : ""}
+    </div>
+    <p class="meaning">${esc(w.meaning || "No meaning yet.")}</p>
+    ${w.gloss ? `<p class="gloss">${esc(w.gloss)}</p>` : ""}
+    ${(w.examples || []).length ? `<ul class="examples">${w.examples.map(e => `<li>${highlight(e, w.word)}</li>`).join("")}</ul>` : ""}
+    ${w.tip ? `<p class="tip"><b>At work:</b> ${esc(w.tip)}</p>` : ""}
+    <div class="row mt">
+      ${ai ? `<button class="btn" id="btn-more" ${state.moreBusy ? "disabled" : ""}>${state.moreBusy === w.slug ? "Thinking…" : "More examples"}</button>` : ""}
+      ${ai && !w.meaning ? `<button class="btn hl" id="btn-fill" ${state.busy ? "disabled" : ""}>Fill in meaning</button>` : ""}
+      <button class="btn ghost" id="btn-known">${status(w) === "learned" ? "Reset progress" : "I know this one"}</button>
+      <button class="btn ghost danger" id="btn-del">Remove</button>
+    </div>
+  </section>
+  <section class="card">
+    <p class="label">Use it yourself</p>
+    <p class="muted small lead">Write one sentence you could say at work this week. ${ai ? "Claude checks whether it sounds natural." : IN_ARTIFACT ? "Save it to come back to later." : `Save it to come back to later, or <button class="link" id="go-key">turn on Claude checks</button>.`}</p>
+    <textarea id="sentence" data-keep="sentence:${esc(w.slug)}" rows="3" placeholder="e.g. I may have misconstrued the brief, so let me double-check with the PM."></textarea>
+    <div class="row mt">
+      ${ai ? `<button class="btn primary" id="btn-check" ${fb && fb.busy ? "disabled" : ""}>Check my sentence</button>` : ""}
+      <button class="btn" id="btn-save">${ai ? "Save without checking" : "Save sentence"}</button>
+      ${ai ? `<span class="small muted kbd-hint">⌘/Ctrl + Enter to check</span>` : ""}
+    </div>
+    ${fbHtml}
+    ${(w.sentences || []).length ? `<p class="label" style="margin-top:18px">Your earlier sentences</p><ul class="history">${w.sentences.slice().reverse().map(s => `<li>${esc(s.corrected || s.text)}</li>`).join("")}</ul>` : ""}
+  </section>`;
+
+  $("#btn-back").onclick = closeDetail;
+  $("#btn-del").onclick = e => {
+    const b = e.currentTarget;
+    if (b.dataset.arm){ removeWord(w.slug); return; }
+    b.dataset.arm = "1"; b.textContent = "Remove for sure?";
+    setTimeout(() => { if (b.isConnected){ delete b.dataset.arm; b.textContent = "Remove"; } }, 4000);
+  };
+  $("#btn-known").onclick = () => saveWord(status(w) === "learned" ? { ...w, srs: freshSrs() } : { ...w, srs: { ...freshSrs(), reps: 3, interval: 30, last: today(), due: addDays(30) } });
+  $("#btn-more")?.addEventListener("click", () => moreExamples(w));
+  $("#btn-fill")?.addEventListener("click", () => enrich([w]));
+  $("#btn-check")?.addEventListener("click", () => checkSentence(w));
+  $("#go-key")?.addEventListener("click", () => { state.view = "add"; render(); requestAnimationFrame(() => $("#claude-card")?.scrollIntoView({ block: "start" })); });
+  $("#btn-save").onclick = () => { const t = $("#sentence").value.trim(); if (t) keepSentence(w, t, null); };
+  $("#btn-keep")?.addEventListener("click", () => keepSentence(w, fb.text, fb.result));
+  $("#sentence").addEventListener("keydown", e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "Enter"){ e.preventDefault(); ai ? checkSentence(w) : $("#btn-save").click(); }
+  });
+}
+function openWord(slug){
+  state.current = slug; state.view = "learn"; state.learnFb = null;
+  if (narrowMq.matches){
+    state.listScroll = window.scrollY; state.detail = true;
+    if (!IN_ARTIFACT){ try { history.pushState({ ahwDetail: true }, ""); } catch {} }
+    render(); window.scrollTo(0, 0);
+  } else render();
+}
+function closeDetail(){
+  if (!IN_ARTIFACT && history.state && history.state.ahwDetail){ history.back(); return; }
+  state.detail = false; render(); restoreListScroll();
+}
+function restoreListScroll(){ requestAnimationFrame(() => window.scrollTo(0, state.listScroll || 0)); }
+function keepSentence(w, text, result){
+  const cur = state.words[w.slug] || w;
+  state.resetDrafts.add("sentence:" + w.slug);
+  state.learnFb = null;
+  saveWord({ ...cur, sentences: [...(cur.sentences || []), { text, corrected: (result && result.corrected) || text, verdict: (result && result.verdict) || "", at: today() }] });
+  toast("Saved to this word");
+}
+
+// ---------- review ----------
+function answerMode(){
+  const a = state.settings.answer;
+  return a === "tap" || a === "type" ? a : (coarseMq.matches ? "tap" : "type");
+}
+function segHtml(){
+  const m = answerMode();
+  return `<div class="seg" role="group" aria-label="Answer by"><button data-answer="tap" aria-pressed="${m === "tap"}">Tapping</button><button data-answer="type" aria-pressed="${m === "type"}">Typing</button></div>`;
+}
+function wireSeg(){
+  $$("[data-answer]", main).forEach(b => b.onclick = () => {
+    state.settings.answer = b.dataset.answer; saveSettings();
+    const r = state.review;
+    if (r && r.i < r.queue.length && !r.revealed) r.tap = answerMode() === "tap";
+    renderMain();
+  });
+}
+function startReview(free){
+  const pool = shuffle(Object.values(state.words).filter(w => free || isDue(w)));
+  const queue = pool.slice(0, SESSION);
+  if (!queue.length) return;
+  state.review = { queue, i: 0, total: queue.length, done: 0, free: !!free };
+  nextCard(); render(); window.scrollTo(0, 0);
+}
+function nextCard(){
+  const r = state.review;
+  Object.assign(r, { revealed: false, correct: null, fb: null, text: "", picked: null, checking: false, error: null, sentence: null, options: null });
+  const w = r.queue[r.i]; if (!w) return;
+  r.tap = answerMode() === "tap";
+  const exs = (w.examples || []).filter(e => gapify(e, w.word));
+  const modes = [];
+  if (exs.length) modes.push("gap");
+  if (w.meaning) modes.push("recall");
+  if (Object.keys(state.words).length >= 4 && (w.meaning || exs.length)) modes.push("choice", "choice");
+  if (aiReady()) modes.push("write");
+  r.mode = modes.length ? modes[Math.floor(Math.random() * modes.length)] : "recall";
+  if (r.mode === "gap" || (r.mode === "choice" && exs.length && (!w.meaning || Math.random() < .5))) r.sentence = exs[Math.floor(Math.random() * exs.length)];
+  if (r.mode === "choice") r.options = buildOptions(w);
+}
+// Four options: the right word plus three from your own list, preferring the same part of speech.
+function buildOptions(w){
+  const others = Object.values(state.words).filter(x => x.slug !== w.slug && norm(x.word) !== norm(w.word));
+  const kind = s => (s || "").split(/[\s/]/)[0].toLowerCase();
+  const same = shuffle(others.filter(x => kind(x.pos) === kind(w.pos))), rest = shuffle(others.filter(x => kind(x.pos) !== kind(w.pos)));
+  return shuffle([w.word, ...[...same, ...rest].slice(0, 3).map(x => x.word)]);
+}
+function renderReview(){
+  const r = state.review;
+  if (!r) return renderReviewStart();
+  if (r.i >= r.queue.length) return renderReviewDone();
+  const w0 = r.queue[r.i], w = state.words[w0.slug] || w0;
+  // A word edited mid-session may no longer match its sentence; fall back to a meaning card.
+  if (r.sentence && !gapify(r.sentence, w.word)){ r.sentence = null; if (r.mode === "gap") r.mode = "recall"; }
+  if (r.mode === "choice" && !r.sentence && !w.meaning) r.mode = "recall";
+  let prompt;
+  if (r.mode === "gap"){
+    prompt = `<p class="label">Fill the gap</p><p class="prompt">${gapHtml(gapify(r.sentence, w.word), r.revealed)}</p>${r.revealed ? "" : `<p class="muted small">Hint: ${esc(w.meaning || "")}</p>`}`;
+  } else if (r.mode === "choice"){
+    prompt = r.sentence
+      ? `<p class="label">Pick the word that fits</p><p class="prompt">${gapHtml(gapify(r.sentence, w.word), r.revealed)}</p>`
+      : `<p class="label">Pick the word for this meaning</p><p class="prompt">${esc(w.meaning || "")}</p>`;
+  } else if (r.mode === "write"){
+    prompt = `<p class="label">Write a sentence with</p><p class="prompt"><mark>${esc(w.word)}</mark> <span class="pos">${esc(w.pos || "")}</span></p><p class="muted small">${esc(w.meaning || "")} Make it something you could say at work.</p>`;
+  } else {
+    prompt = `<p class="label">Which word or phrase is this?</p><p class="prompt">${esc(w.meaning || "(no meaning yet)")}</p>${w.pos ? `<p class="muted small">${esc(w.pos)}</p>` : ""}`;
+  }
+  let body = "";
+  if (r.mode === "choice"){
+    body = `<div class="options">${r.options.map((o, i) => {
+      const cls = r.revealed ? (o === w.word ? "right" : o === r.picked ? "wrong" : "dim") : "";
+      return `<button class="opt ${cls}" data-opt="${i}" ${r.revealed ? "disabled" : ""}><kbd>${i + 1}</kbd><span>${esc(o)}</span></button>`;
+    }).join("")}</div>`;
+  }
+  if (!r.revealed){
+    if (r.mode === "write"){
+      body += `<textarea id="answer" data-keep="answer:${r.i}" rows="3" placeholder="Your sentence…" aria-label="Your sentence" ${r.checking ? "disabled" : ""}></textarea>
+        <div class="row mt"><button class="btn primary" id="btn-check" ${r.checking ? "disabled" : ""}>${r.checking ? "Checking…" : "Check with Claude"}</button><button class="btn ghost" id="btn-skip" ${r.checking ? "disabled" : ""}>Skip</button><span class="small muted kbd-hint">⌘/Ctrl + Enter</span></div>
+        ${r.error ? `<div class="banner bad">${esc(r.error)}</div>` : ""}`;
+    } else if (r.mode !== "choice"){
+      body += r.tap
+        ? `<button class="btn hl big wide reveal" id="btn-show">Show answer</button>`
+        : `<input class="answer" id="answer" data-keep="answer:${r.i}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Type your answer" aria-label="Your answer">
+           <div class="row mt"><button class="btn primary" id="btn-check">Check</button><button class="btn ghost" id="btn-show">Show answer</button></div>`;
+    }
+  } else {
+    body += resultHtml(r, w) + gradesHtml(r, w);
+  }
+  main.innerHTML = `<section class="card flash${r.revealed ? " swipeable" : ""}" id="flash">
+    <div class="review-head"><span class="muted small">${r.free ? "Free practice" : "Review"} · ${r.i + 1} of ${r.total}</span><button class="btn ghost small" id="btn-quit">End session</button></div>
+    <div class="progress" aria-hidden="true"><i style="width:${(r.i / r.total) * 100}%"></i></div>
+    ${prompt}${body}
+  </section>`;
+
+  const idx = r.i;
+  $("#btn-quit").onclick = () => { state.review = null; render(); };
+  $$(".opt", main).forEach(b => b.onclick = () => pickOption(Number(b.dataset.opt)));
+  $("#btn-show")?.addEventListener("click", () => reveal(r.tap ? null : false));
+  $("#btn-skip")?.addEventListener("click", () => { r.fb = null; reveal(false); });
+  $("#btn-check")?.addEventListener("click", () => r.mode === "write" ? checkWrite() : checkTyped());
+  const a = $("#answer");
+  if (a){
+    a.addEventListener("keydown", e => {
+      if (r.mode === "write"){ if ((e.metaKey || e.ctrlKey) && e.key === "Enter"){ e.preventDefault(); checkWrite(); } }
+      else if (e.key === "Enter"){ e.preventDefault(); checkTyped(); }
+    });
+    if (!coarseMq.matches && !r.checking) a.focus({ preventScroll: true });
+  }
+  $$(".grades button", main).forEach(b => b.onclick = () => gradeCard(b.dataset.g, idx));
+  if (r.revealed) attachSwipe($("#flash"), () => gradeCard("again", idx), () => gradeCard("good", idx));
+}
+function resultHtml(r, w){
+  if (r.mode === "write") return r.fb ? feedbackHtml(r.fb, r.text) : `<div class="result neutral">Skipped. One example: ${highlight((w.examples || [])[0] || "", w.word)}</div>`;
+  if (r.mode === "choice") return `<div class="result ${r.correct ? "right" : "wrong"}"><b>${r.correct ? "Correct." : "Not quite."}</b> ${esc(w.word)}: ${esc(w.meaning || "")}</div>`;
+  const ex = r.mode === "recall" && (w.examples || [])[0] ? `<span class="ex">${highlight(w.examples[0], w.word)}</span>` : "";
+  if (r.correct === null) return `<div class="result neutral">The answer is <b>${esc(w.word)}</b>.${ex}</div>`;
+  return `<div class="result ${r.correct ? "right" : "wrong"}"><b>${r.correct ? "Correct." : "Not quite."}</b> The answer is <b>${esc(w.word)}</b>.${ex}</div>`;
+}
+const suggested = r => r.correct === false ? "again" : "good";
+function gradesHtml(r, w){
+  const s = suggested(r);
+  return `<div class="grades">
+      <button data-g="again" class="${s === "again" ? "suggest" : ""}">Again<small>${r.free ? "repeat" : "today"}</small></button>
+      <button data-g="good" class="${s === "good" ? "suggest" : ""}">Good<small>${r.free ? "next" : nextIn(w, "good")}</small></button>
+      <button data-g="easy">Easy<small>${r.free ? "next" : nextIn(w, "easy")}</small></button>
+    </div>
+    <p class="swipe-hint small muted">Swipe right for Good, left for Again</p>`;
+}
+function reveal(correct){ const r = state.review; if (!r || r.revealed) return; r.correct = correct; r.revealed = true; renderMain(); }
+function pickOption(i){
+  const r = state.review; if (!r || r.revealed || r.mode !== "choice") return;
+  const w0 = r.queue[r.i], w = state.words[w0.slug] || w0, o = r.options[i];
+  if (o === undefined) return;
+  r.picked = o; reveal(o === w.word);
+}
+function checkTyped(){
+  const r = state.review; if (!r || r.revealed) return;
+  const w0 = r.queue[r.i], w = state.words[w0.slug] || w0;
+  const v = norm($("#answer")?.value || "");
+  if (!v){ reveal(false); return; }
+  const targets = [norm(w.word)];
+  if (r.mode === "gap"){ const g = gapify(r.sentence, w.word); if (g) targets.push(norm(g.answer)); }
+  reveal(targets.some(t => v === t || v.includes(t) || (t.includes(v) && v.length >= Math.max(3, Math.ceil(t.length * .6)))));
+}
+async function checkWrite(){
+  const r = state.review; if (!r || r.checking || r.revealed) return;
+  const text = ($("#answer")?.value || "").trim(); if (!text) return;
+  const idx = r.i, w0 = r.queue[idx], w = state.words[w0.slug] || w0;
+  r.checking = true; r.error = null; r.text = text; renderMain();
+  try {
+    const fb = await judgeSentence(w, text);
+    if (state.review !== r || r.i !== idx) return;
+    r.checking = false; r.fb = fb; reveal(fb.verdict !== "off");
+  } catch (e){
+    if (state.review !== r || r.i !== idx) return;
+    r.checking = false; r.error = aiFail(shapeError(e)); renderMain();
+  }
+}
+function gradeCard(g, idx){
+  const r = state.review; if (!r || r.i !== idx || !r.revealed) return;
+  const w0 = r.queue[idx];
+  let doc = state.words[w0.slug] || w0, changed = false;
+  if (r.mode === "write" && r.fb && r.fb.verdict !== "off"){
+    doc = { ...doc, sentences: [...(doc.sentences || []), { text: r.text, corrected: r.fb.corrected || r.text, verdict: r.fb.verdict, at: today() }] };
+    changed = true;
+  }
+  if (!r.free){ doc = grade(doc, g); changed = true; }
+  if (changed && state.words[doc.slug]) saveWord(doc, { quiet: true });
+  if (g === "again"){ r.queue.push(w0); r.total = r.queue.length; }
+  r.done++; r.i++; nextCard(); render(); window.scrollTo(0, 0);
+}
+function renderReviewStart(){
+  const all = Object.values(state.words), due = all.filter(isDue).length;
+  const kinds = ["pick one of four", "fill the gap", "recall the word from its meaning"];
+  if (aiReady()) kinds.push("write your own sentence for Claude to check");
+  main.innerHTML = `<section class="card start">
+    <h3>${state.loading && !all.length ? "Loading…" : due ? `${plural(due, "word")} ready for review` : all.length ? "All caught up" : "No words yet"}</h3>
+    <p class="muted">${due ? `Each session is up to ${SESSION} cards, mixed: ${listJoin(kinds)}. Rate each card honestly and the schedule takes care of itself.` : all.length ? "Nothing is due today. Free practice doesn't change the schedule." : "Add some words in the Add tab first."}</p>
+    <div class="answer-by"><span class="label">Answer by</span>${segHtml()}</div>
+    <div class="row center mt">
+      ${due ? `<button class="btn hl big" id="btn-start">Start review</button>` : ""}
+      ${all.length ? `<button class="btn ${due ? "" : "hl big"}" id="btn-free">Free practice</button>` : ""}
+    </div>
+  </section>`;
+  $("#btn-start")?.addEventListener("click", () => startReview(false));
+  $("#btn-free")?.addEventListener("click", () => startReview(true));
+  wireSeg();
+}
+function renderReviewDone(){
+  const r = state.review, dueLeft = Object.values(state.words).filter(isDue).length;
+  const more = r.free ? `<button class="btn hl big" id="btn-more-cards">Practice more</button>` : dueLeft ? `<button class="btn hl big" id="btn-more-cards">Keep going</button>` : "";
+  main.innerHTML = `<section class="card start">
+    <h3>Session done</h3>
+    <p class="muted">${plural(r.done, "card")} reviewed. ${r.free ? "Free practice doesn't change the schedule." : dueLeft ? `${plural(dueLeft, "more word")} due today.` : "Your next reviews are scheduled."}</p>
+    <div class="row center mt">${more}<button class="btn" id="btn-finish">Done</button></div>
+  </section>`;
+  $("#btn-more-cards")?.addEventListener("click", () => startReview(r.free));
+  $("#btn-finish").onclick = () => { state.review = null; render(); };
+}
+// Horizontal swipe on a revealed card: right = Good, left = Again. Vertical drags scroll as usual.
+function attachSwipe(el, onLeft, onRight){
+  if (!el) return;
+  let id = null, x0 = 0, y0 = 0, dx = 0, axis = null;
+  const reset = () => { el.style.transform = ""; el.classList.remove("swipe-left", "swipe-right"); };
+  el.addEventListener("pointerdown", e => {
+    if (e.pointerType === "mouse" || e.target.closest("button, input, textarea, a, label")) return;
+    id = e.pointerId; x0 = e.clientX; y0 = e.clientY; dx = 0; axis = null; el.style.transition = "none";
+  });
+  el.addEventListener("pointermove", e => {
+    if (e.pointerId !== id) return;
+    const mx = e.clientX - x0, my = e.clientY - y0;
+    if (!axis){ if (Math.abs(mx) < 8 && Math.abs(my) < 8) return; axis = Math.abs(mx) > Math.abs(my) ? "x" : "y"; }
+    if (axis !== "x") return;
+    dx = mx;
+    el.style.transform = `translateX(${dx}px) rotate(${dx / 30}deg)`;
+    el.classList.toggle("swipe-right", dx > 50);
+    el.classList.toggle("swipe-left", dx < -50);
+  });
+  const end = e => {
+    if (e.pointerId !== id) return;
+    id = null;
+    el.style.transition = "transform .18s ease";
+    if (axis === "x" && Math.abs(dx) > 90){
+      const right = dx > 0;
+      el.style.transform = `translateX(${right ? 110 : -110}vw) rotate(${right ? 12 : -12}deg)`;
+      setTimeout(right ? onRight : onLeft, 160);
+    } else reset();
+  };
+  el.addEventListener("pointerup", end);
+  el.addEventListener("pointercancel", end);
+}
+
+// ---------- add, settings, backup ----------
+function renderAdd(){
+  const r = state.addResult, ai = aiReady();
+  const noAi = !ai ? (IN_ARTIFACT
+    ? `<p class="hint">Claude isn't available in this view, so new words are added without meanings.</p>`
+    : `<p class="hint">Without Claude, new words are added without meanings. <button class="link" id="go-key2">Turn on Claude checks</button> below to fill them in.</p>`) : "";
+  main.innerHTML = `
+  <section class="card">
+    <p class="label">Add words</p>
+    <p class="muted small lead">One per line. Paste straight from your notes; timestamps and names are stripped. Add your own meaning after a dash if you like: <code>feasible — possible to do</code>.</p>
+    <textarea id="paste" data-keep="paste" rows="6" placeholder="to misconstrue&#10;sweet spot&#10;pull it off — succeed at something difficult"></textarea>
+    <div class="row mt">
+      <button class="btn primary" id="btn-add" ${state.busy ? "disabled" : ""}>${ai ? "Add and fill in meanings" : "Add"}</button>
+      ${ai ? `<button class="btn" id="btn-add-plain" ${state.busy ? "disabled" : ""}>Add without meanings</button>` : ""}
+    </div>
+    ${r ? `<div class="banner ${r.kind}">${esc(r.text)}</div>` : ""}
+    ${noAi}
+  </section>
+  <section class="card">
+    <p class="label">Practice settings</p>
+    <div class="settings">
+      <div class="setting"><span>Answer review cards by</span>${segHtml()}<span class="hint" style="margin:0">Tapping shows the answer and lets you swipe to rate it. Typing asks you to spell the word.</span></div>
+      <label class="setting">Also show a short translation in
+        <input class="field" id="gloss" value="${esc(state.settings.gloss)}" placeholder="e.g. Russian (leave empty for English only)" autocapitalize="words">
+        <span class="hint" style="margin:0">Applies to words you add from now on.</span>
+      </label>
+    </div>
+  </section>
+  ${IN_ARTIFACT ? "" : claudeCardHtml()}
+  <section class="card">
+    <p class="label">Backup and moving progress</p>
+    <p class="muted small lead">${IN_ARTIFACT
+      ? "Your words sync across devices when you open this page in Claude. To move progress into the iPhone web app, copy a backup here and import it there."
+      : "Progress is saved on this device. To move it to the Claude version of this app, or to keep a copy, back it up and import it there."}</p>
+    <div class="row">
+      <button class="btn" id="btn-copy">Copy backup</button>
+      ${IN_ARTIFACT ? "" : `<button class="btn" id="btn-file">Save as file</button>`}
+    </div>
+    <textarea id="backup-out" class="mt" rows="3" readonly hidden aria-label="Backup text"></textarea>
+    <p class="label" style="margin-top:18px">Import a backup</p>
+    <textarea id="backup-in" data-keep="backup-in" rows="3" placeholder="Paste a backup here"></textarea>
+    <div class="row mt">
+      <button class="btn primary" id="btn-import">Import</button>
+      <label class="btn">Choose file<input type="file" id="backup-file" accept="application/json,.json,text/plain" hidden></label>
+    </div>
+    <p class="hint">Importing merges. New words are added. For words in both places, the most recently practiced version wins, and saved sentences from both are kept.</p>
+    ${state.backupNote ? `<div class="banner ${state.backupNote.kind}">${esc(state.backupNote.text)}</div>` : ""}
+  </section>`;
+
+  $("#btn-add").onclick = () => addFromPaste(aiReady());
+  $("#btn-add-plain")?.addEventListener("click", () => addFromPaste(false));
+  $("#go-key2")?.addEventListener("click", () => $("#claude-card")?.scrollIntoView({ block: "start", behavior: "smooth" }));
+  $("#gloss").onchange = e => { state.settings.gloss = e.target.value.trim(); saveSettings(); };
+  wireSeg();
+  $("#btn-key")?.addEventListener("click", saveKey);
+  $("#apikey")?.addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); saveKey(); } });
+  $("#btn-forget")?.addEventListener("click", forgetKey);
+  $("#btn-copy").onclick = copyBackup;
+  $("#btn-file")?.addEventListener("click", saveBackupFile);
+  $("#btn-import").onclick = () => importBackup($("#backup-in").value);
+  $("#backup-file").onchange = async e => { const f = e.target.files && e.target.files[0]; if (f) importBackup(await f.text()); e.target.value = ""; };
+}
+function claudeCardHtml(){
+  const n = state.keyNote;
+  return `<section class="card" id="claude-card">
+    <p class="label">Claude checks</p>
+    <p class="muted small lead">Sentence checks and automatic meanings use Claude Haiku 5.5 with your own Anthropic API key. The key is stored only on this device. API usage is billed separately from a Claude subscription, and one sentence check costs far less than a cent.</p>
+    ${state.apiKey
+      ? `<div class="row"><span class="pill">✓ Claude checks are on</span><button class="btn ghost danger" id="btn-forget">Remove key</button></div>`
+      : `<input class="field" id="apikey" data-keep="apikey" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="sk-ant-…" aria-label="Anthropic API key">
+         <div class="row mt"><button class="btn primary" id="btn-key">Save key</button></div>
+         <p class="hint">Create a key in the <a href="https://console.anthropic.com/" target="_blank" rel="noopener">Anthropic Console</a> under API keys.</p>`}
+    ${n ? `<div class="banner ${n.kind}">${esc(n.text)}</div>` : ""}
+  </section>`;
+}
+function parsePaste(text){
+  const out = [];
+  for (let line of String(text).split(/\n+/)){
+    line = line.replace(/^\[[^\]]*\]\s*[^:]*:\s*/, "").trim();          // strip "[date] Name: "
+    if (!line || line.length > 120) continue;
+    if (/glpat-|sk-ant-|[A-Za-z0-9_-]{30,}/.test(line)) continue;       // skip tokens and keys
+    if (/(?=\S*\d)(?=\S*[A-Za-z])(?=\S*[^A-Za-z0-9\s'’.,-])\S{8,}/.test(line)) continue; // skip password-like strings
+    const [w, ...rest] = line.split(/\s+[—–-]\s+/);
+    const word = w.trim().replace(/\.$/, "");
+    if (!word) continue;
+    out.push({ word: word.charAt(0).toLowerCase() + word.slice(1), meaning: rest.join(" - ").trim() });
+  }
+  return out;
+}
+async function addFromPaste(withAi){
+  if (state.busy) return;
+  const items = parsePaste($("#paste").value);
+  if (!items.length){ state.addResult = { kind: "bad", text: "Nothing to add. Put one word or phrase per line." }; renderMain(); return; }
+  const docs = [];
+  for (const it of items){
+    const slug = slugify(it.word);
+    if (state.words[slug] || docs.some(d => d.slug === slug)) continue;
+    docs.push({ slug, word: it.word, heard: it.word, meaning: it.meaning || "", examples: [], sentences: [], srs: freshSrs(), addedAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+  }
+  state.resetDrafts.add("paste");
+  if (!docs.length){ state.addResult = { kind: "", text: "All of those are already in your list." }; renderMain(); return; }
+  for (const d of docs){ state.words[d.slug] = d; state.deleted.delete(d.slug); }
+  state.current = docs[0].slug;
+  state.addResult = { kind: "good", text: `Added ${plural(docs.length, "word")}.` };
+  render();
+  await writeMany(docs);
+  if (withAi) await enrich(docs);
+}
+async function copyBackup(){
+  const text = backupText(), n = Object.keys(state.words).length;
+  try { await navigator.clipboard.writeText(text); toast(`Copied a backup of ${plural(n, "word")}`); }
+  catch {
+    const out = $("#backup-out"); out.hidden = false; out.value = text; out.focus(); out.select();
+    toast("Copy the selected text");
+  }
+}
+function backupText(){ return JSON.stringify({ app: "after-hours-words", version: 1, exportedAt: new Date().toISOString(), words: Object.values(state.words) }); }
+async function saveBackupFile(){
+  const name = `after-hours-words-${today()}.json`;
+  const blob = new Blob([backupText()], { type: "application/json" });
+  try {
+    const file = new File([blob], name, { type: "application/json" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })){ await navigator.share({ files: [file], title: name }); return; }
+  } catch (e){ if (e && e.name === "AbortError") return; }
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+}
+const stamp = d => d.updatedAt || (d.srs && d.srs.last) || d.addedAt || "";
+function mergeDocs(cur, inc){
+  const newer = stamp(inc) > stamp(cur) ? inc : cur;
+  const seen = new Set(), sentences = [];
+  for (const s of [...(cur.sentences || []), ...(inc.sentences || [])]){
+    const k = String((s && s.text) || "").trim().toLowerCase();
+    if (!k || seen.has(k)) continue;
+    seen.add(k); sentences.push(s);
+  }
+  if (newer === cur && sentences.length === (cur.sentences || []).length) return cur;
+  return { ...newer, slug: cur.slug, sentences };
+}
+async function importBackup(text){
+  let data;
+  try { data = JSON.parse(String(text || "").trim()); } catch { data = null; }
+  const incoming = Array.isArray(data) ? data : data && Array.isArray(data.words) ? data.words : null;
+  if (!incoming){ state.backupNote = { kind: "bad", text: "That doesn't look like a backup. Paste the whole text you copied, starting with {." }; renderMain(); return; }
+  state.backupNote = { kind: "", text: "Importing…" }; renderMain();
+  let added = 0, updated = 0;
+  const changed = [];
+  for (const raw of incoming){
+    if (!raw || typeof raw.word !== "string" || !raw.word.trim()) continue;
+    const d = { ...raw, slug: raw.slug || slugify(raw.word) };
+    const cur = state.words[d.slug];
+    if (!cur){ changed.push(d); added++; continue; }
+    const merged = mergeDocs(cur, d);
+    if (merged !== cur){ changed.push(merged); updated++; }
+  }
+  for (const d of changed){ state.words[d.slug] = d; state.deleted.delete(d.slug); }
+  await writeMany(changed);
+  state.resetDrafts.add("backup-in");
+  state.backupNote = { kind: "good", text: `Imported ${plural(added, "new word")} and updated ${plural(updated, "word")}.` };
+  render();
+}
+
+// ---------- Claude ----------
+const aiReady = () => !!(state.sample || state.apiKey);
+const SCHEMAS = {
+  judge: { type: "object", additionalProperties: false, required: ["verdict", "corrected", "feedback", "alternative"], properties: {
+    verdict: { type: "string", enum: ["natural", "ok", "off"] }, corrected: { type: "string" }, feedback: { type: "string" }, alternative: { type: "string" } } },
+  examples: { type: "object", additionalProperties: false, required: ["examples"], properties: { examples: { type: "array", items: { type: "string" } } } },
+  enrich: { type: "object", additionalProperties: false, required: ["entries"], properties: { entries: { type: "array", items: {
+    type: "object", additionalProperties: false, required: ["heard", "word", "pos", "meaning", "gloss", "examples", "tip"], properties: {
+      heard: { type: "string" }, word: { type: "string" }, pos: { type: "string" }, meaning: { type: "string" }, gloss: { type: "string" },
+      examples: { type: "array", items: { type: "string" } }, tip: { type: "string" } } } } } },
+};
+let sdkPromise = null, clientCache = null;
+function loadSdk(){
+  if (!sdkPromise) sdkPromise = import(SDK_URL).catch(e => { sdkPromise = null; console.warn(e); throw { code: "offline" }; });
+  return sdkPromise;
+}
+async function getClient(key = state.apiKey){
+  const mod = await loadSdk();
+  const Anthropic = mod.default || mod.Anthropic;
+  if (!clientCache || clientCache.key !== key) clientCache = { key, A: Anthropic, client: new Anthropic({ apiKey: key, dangerouslyAllowBrowser: true, maxRetries: 1 }) };
+  return clientCache;
+}
+// Most specific SDK error class first; retryable and non-retryable cases get different messages.
+function apiErrorCode(e, A){
+  if (!A) return "upstream_error";
+  if (e instanceof A.AuthenticationError) return "bad_key";
+  if (e instanceof A.PermissionDeniedError) return "no_access";
+  if (e instanceof A.NotFoundError) return "no_model";
+  if (e instanceof A.RateLimitError) return "rate_limited";
+  if (e instanceof A.BadRequestError) return "bad_request";
+  if (e instanceof A.InternalServerError) return "upstream_error";
+  if (e instanceof A.APIConnectionError) return "offline";
+  if (e instanceof A.APIError) return e.status === 402 ? "no_credit" : "upstream_error";
+  return "upstream_error";
+}
+function shapeError(e){
+  if (e && !(e instanceof Error) && typeof e.code === "string") return e;
+  return { code: apiErrorCode(e, clientCache && clientCache.A), detail: (e && e.error && e.error.error && e.error.error.message) || "" };
+}
+async function apiJson(prompt, schema, tier){
+  const { client } = await getClient();
+  const res = await client.messages.create({
+    model: MODEL,
+    max_tokens: tier === "quick" ? 4000 : 16000,
+    output_config: { effort: tier === "quick" ? "low" : "medium", format: { type: "json_schema", schema } },
+    messages: [{ role: "user", content: prompt }],
+  });
+  if (res.stop_reason === "refusal") throw { code: "refused" };
+  if (res.stop_reason === "max_tokens") throw { code: "invalid_json" };
+  const text = res.content.filter(b => b.type === "text").map(b => b.text).join("");
+  try { return JSON.parse(text); } catch { throw { code: "invalid_json" }; }
+}
+async function askJson(prompt, schema, tier){
+  if (state.sample) return state.sample.json(prompt, { modelTier: tier, cache: false });
+  if (state.apiKey){ try { return await apiJson(prompt, schema, tier); } catch (e){ throw shapeError(e); } }
+  throw { code: "not_available" };
+}
+function aiFail(e){
+  const m = {
+    not_granted: "Claude is turned off for this page.",
+    rate_limited: "Too many requests right now. Try again in a minute.",
+    refused: "Claude declined that one. Try rephrasing.",
+    invalid_json: "Got an answer I couldn't read. Try again.",
+    upstream_error: "Connection hiccup. Try again.",
+    session_expired: "Please sign in to Claude again.",
+    bad_key: "Anthropic didn't accept that API key. Check it and try again.",
+    no_access: "This API key can't use Claude Haiku 5.5.",
+    no_model: "This API key can't use Claude Haiku 5.5.",
+    no_credit: "Your Anthropic API account is out of credit.",
+    offline: "No connection. Try again when you're online.",
+    not_available: "Claude isn't set up here yet.",
+  };
+  if (e && e.code === "bad_request" && e.detail) return e.detail;
+  return m[e && e.code] || "Something went wrong. Try again.";
+}
+function enrichPrompt(docs){
+  const gloss = state.settings.gloss;
+  return `You are helping a product designer who is about to start their first job conducted in English (a tech company in Berlin). They collect words and phrases they hear in YouTube videos and podcasts. For EACH entry below, return one object. Fix obvious misspellings or mis-hearings in "word" (keep the entry's own form in "heard"). If an entry is a sentence fragment, extract the useful phrase or idiom from it as "word".
+
+Fields: "heard" (the entry exactly as given), "word" (clean dictionary or idiom form, lowercase, verbs without "to"), "pos" (short: verb, noun, adjective, adverb, phrasal verb, idiom, phrase), "meaning" (plain English, one sentence, learner-friendly, no circular definition), "gloss" (${gloss ? `a short translation into ${gloss}` : "an empty string"}), "examples" (exactly 3 natural sentences, 8-18 words each, at least two set in a workplace: standups, design reviews, Slack messages, 1:1s, planning), "tip" (one sentence: register, a common collocation, or a pitfall for a non-native speaker).
+
+Reply with only a JSON object of the form {"entries": [...]}, one entry per line below, in the same order.
+
+Entries:
+${docs.map(d => "- " + d.heard).join("\n")}`;
+}
+async function enrich(docs){
+  if (!aiReady() || state.busy || !docs.length) return;
+  state.busy = true;
+  let done = 0, dupes = 0, failed = null;
+  for (let i = 0; i < docs.length; i += 15){
+    const chunk = docs.slice(i, i + 15);
+    state.addResult = { kind: "", text: docs.length > 15 ? `Asking Claude about words ${i + 1}–${Math.min(i + 15, docs.length)} of ${docs.length}…` : `Asking Claude about ${plural(docs.length, "word")}… this takes a moment.` };
+    renderMain();
+    try {
+      const res = await askJson(enrichPrompt(chunk), SCHEMAS.enrich, "default");
+      const arr = res && Array.isArray(res.entries) ? res.entries : [];
+      const out = [];
+      chunk.forEach((d, k) => {
+        const a = arr.find(x => x && x.heard === d.heard) || arr[k];
+        if (!a) return;
+        const base = state.words[d.slug] || d;
+        const word = String(a.word || base.word).trim() || base.word;
+        const upd = { ...base, word, pos: String(a.pos || ""), meaning: base.meaning || String(a.meaning || ""), gloss: String(a.gloss || base.gloss || ""),
+          examples: Array.isArray(a.examples) ? a.examples.map(String).slice(0, 3) : (base.examples || []), tip: String(a.tip || ""), updatedAt: new Date().toISOString() };
+        const slug = slugify(word);
+        if (slug !== d.slug){
+          if (state.words[slug]){ dropWord(d.slug); if (state.current === d.slug) state.current = slug; dupes++; return; }
+          dropWord(d.slug); state.deleted.delete(slug); upd.slug = slug;
+          if (state.current === d.slug) state.current = slug;
+        }
+        state.words[upd.slug] = upd; out.push(upd);
+      });
+      await writeMany(out);
+      done += out.length;
+    } catch (e){ console.warn(e); failed = aiFail(shapeError(e)); break; }
+  }
+  state.busy = false;
+  const dupeNote = dupes ? ` ${plural(dupes, "entry", "entries")} turned out to be already in your list.` : "";
+  state.addResult = failed
+    ? { kind: "bad", text: done ? `Filled in ${plural(done, "word")}, then stopped. ${failed}` : failed }
+    : { kind: "good", text: `Done. ${plural(done, "word")} now ${done === 1 ? "has" : "have"} meanings and examples.${dupeNote}` };
+  render();
+}
+async function moreExamples(w){
+  if (!aiReady() || state.moreBusy) return;
+  state.moreBusy = w.slug; renderMain();
+  try {
+    const res = await askJson(`Give 3 more natural example sentences (8-18 words each, at least two in a tech-workplace setting) for the English ${w.pos || "word"} "${w.word}", meaning: ${w.meaning}. Don't repeat these: ${JSON.stringify(w.examples || [])}. Reply with only a JSON object of the form {"examples": ["...", "...", "..."]}.`, SCHEMAS.examples, "quick");
+    const add = res && Array.isArray(res.examples) ? res.examples.map(String).filter(Boolean) : [];
+    const cur = state.words[w.slug];
+    if (add.length && cur) saveWord({ ...cur, examples: [...(cur.examples || []), ...add].slice(0, 9) }, { quiet: true });
+  } catch (e){ toast(aiFail(shapeError(e))); }
+  state.moreBusy = null; render();
+}
+async function judgeSentence(w, text){
+  const r = await askJson(`A non-native English speaker (product designer, starting a job at a Berlin tech company) is practising the ${w.pos || "word"} "${w.word}" (meaning: ${w.meaning}). They wrote this sentence to use at work:
+
+"${text}"
+
+Judge it as a friendly colleague would. Return only a JSON object:
+{"verdict": "natural" | "ok" | "off", "corrected": "<the sentence with minimal fixes, or the same sentence if fine>", "feedback": "<1-2 short sentences: what is right, what to fix, whether the target word is used correctly>", "alternative": "<one more idiomatic way a native colleague might phrase the same idea>"}
+"natural" = a native colleague would say this; "ok" = understandable but with grammar or word-choice slips; "off" = the target word is misused or the sentence does not work.`, SCHEMAS.judge, "quick");
+  const verdict = ["natural", "ok", "off"].includes(r && r.verdict) ? r.verdict : "ok";
+  return { verdict, corrected: String((r && r.corrected) || ""), feedback: String((r && r.feedback) || ""), alternative: String((r && r.alternative) || "") };
+}
+function feedbackHtml(r, text, withKeep){
+  return `<div class="feedback ${r.verdict}">
+      <div class="verdict">${r.verdict === "natural" ? "Sounds natural" : r.verdict === "ok" ? "Almost there" : "Not quite right"}</div>
+      ${r.corrected && norm(r.corrected) !== norm(text) ? `<p><b>Fixed:</b> ${esc(r.corrected)}</p>` : ""}
+      <p>${esc(r.feedback)}</p>
+      ${r.alternative ? `<p class="alt">A colleague might say: “${esc(r.alternative)}”</p>` : ""}
+      ${withKeep ? `<div class="row mt"><button class="btn small" id="btn-keep">Keep this sentence</button></div>` : ""}
+    </div>`;
+}
+async function checkSentence(w){
+  const text = ($("#sentence")?.value || "").trim();
+  if (!text || !aiReady() || (state.learnFb && state.learnFb.busy)) return;
+  state.learnFb = { slug: w.slug, text, busy: true }; renderMain();
+  let next;
+  try { next = { slug: w.slug, text, result: await judgeSentence(w, text) }; }
+  catch (e){ next = { slug: w.slug, text, error: aiFail(shapeError(e)) }; }
+  if (state.learnFb && state.learnFb.slug === w.slug && state.learnFb.text === text) state.learnFb = next;
+  renderMain();
+}
+async function saveKey(){
+  const key = ($("#apikey")?.value || "").trim();
+  if (!key){ state.keyNote = { kind: "bad", text: "Paste your API key first." }; renderMain(); return; }
+  state.keyNote = { kind: "", text: "Checking the key…" }; renderMain();
+  try {
+    const { client } = await getClient(key);
+    await client.models.retrieve(MODEL);
+    state.apiKey = key; lsWrite(LS.key, key); state.resetDrafts.add("apikey");
+    state.keyNote = { kind: "good", text: "The key works. Sentence checks and automatic meanings are on." };
+  } catch (e){
+    console.warn(e);
+    state.keyNote = { kind: "bad", text: aiFail(shapeError(e)) };
+  }
+  render();
+}
+function forgetKey(){
+  state.apiKey = ""; clientCache = null; lsRemove(LS.key);
+  state.keyNote = { kind: "", text: "Key removed from this device." };
+  render();
+}
+
+// ---------- misc ----------
+let toastT;
+function toast(t){ const el = $("#toast"); el.textContent = t; el.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("show"), 2200); }
+$("#nav").addEventListener("click", e => {
+  const b = e.target.closest("button[data-view]"); if (!b) return;
+  const v = b.dataset.view;
+  if (v === "learn" && state.view === "learn" && state.detail){ closeDetail(); return; }
+  state.view = v;
+  if (state.review && state.review.i >= state.review.queue.length) state.review = null;
+  render(); window.scrollTo(0, 0);
+});
+list.addEventListener("click", e => { const b = e.target.closest("button[data-slug]"); if (b) openWord(b.dataset.slug); });
+$("#search").addEventListener("input", e => { state.filter = e.target.value; renderList(); });
+window.addEventListener("popstate", () => { if (state.detail){ state.detail = false; render(); restoreListScroll(); } });
+document.addEventListener("keydown", e => {
+  const r = state.review;
+  if (state.view !== "review" || !r || r.i >= r.queue.length || e.metaKey || e.ctrlKey || e.altKey) return;
+  const t = e.target, tag = t && t.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA") return;
+  const activate = e.key === "Enter" || e.key === " ";
+  if (tag === "BUTTON" && activate) return;
+  if (!r.revealed){
+    if (r.mode === "choice"){ const i = { 1: 0, 2: 1, 3: 2, 4: 3 }[e.key]; if (i !== undefined){ e.preventDefault(); pickOption(i); } }
+    else if (r.mode !== "write" && r.tap && activate){ e.preventDefault(); reveal(null); }
+    return;
+  }
+  const g = { 1: "again", 2: "good", 3: "easy" }[e.key] || (activate ? suggested(r) : null);
+  if (g){ e.preventDefault(); gradeCard(g, r.i); }
+});
+narrowMq.addEventListener && narrowMq.addEventListener("change", () => render());
+
+// ---------- boot ----------
+state.settings = { ...state.settings, ...(lsRead(LS.settings, {}) || {}) };
+function bootLocal(){
+  state.words = lsRead(LS.words, {}) || {};
+  state.deleted = new Set(lsRead(LS.deleted, []) || []);
+  state.apiKey = IN_ARTIFACT ? "" : String(lsRead(LS.key, "") || "");
+  state.loading = !Object.keys(state.words).length;
+  render();
+  loadSeed();
+}
+// The GitHub Pages copy ships words.json; new words in it are merged in, words you removed stay removed.
+async function loadSeed(){
+  try {
+    const res = await fetch("words.json", { cache: "no-cache" });
+    if (res.ok){
+      const data = await res.json();
+      const arr = Array.isArray(data) ? data : data && data.words;
+      let added = 0;
+      for (const d of Array.isArray(arr) ? arr : []){
+        if (!d || !d.slug || !d.word || state.words[d.slug] || state.deleted.has(d.slug)) continue;
+        state.words[d.slug] = d; added++;
+      }
+      if (added) persistLocal();
+    }
+  } catch {}
+  state.loading = false;
+  render();
+}
+async function bootArtifact(){
+  render();
+  let db = null, sample = null;
+  try { [db, sample] = await Promise.all([window.claude.use("db"), window.claude.use("sample")]); } catch (e){ console.warn(e); }
+  state.sample = sample || null;
+  if (!db){ bootLocal(); return; }
+  state.db = db;
+  db.collection("words").onSnapshot(snap => {
+    const next = {};
+    snap.docs.forEach(d => { const v = d.data(); if (v && v.word) next[v.slug || d.id] = v; });
+    state.words = next; state.loading = false;
+    if (state.current && !next[state.current]){ state.current = null; state.detail = false; }
+    render();
+  }, e => { console.warn("db", e); state.db = null; bootLocal(); });
+}
+if (IN_ARTIFACT) bootArtifact();
+else {
+  bootLocal();
+  try { navigator.storage && navigator.storage.persist && navigator.storage.persist().catch(() => {}); } catch {}
+  if ("serviceWorker" in navigator && location.protocol === "https:") window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}
+})();
+</script>
+</body>
+</html>
