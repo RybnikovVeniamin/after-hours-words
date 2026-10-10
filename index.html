@@ -25,7 +25,7 @@
   --bg:#F3F4F7; --surface:#FFFFFF; --surface-2:#E9EBF0; --ink:#171F33; --muted:#5B6578; --line:#D6DAE3;
   --hl:#F6D64A; --hl-ink:#171F33; --hl-soft:#FBEFB0;
   --good:#2E8B5A; --good-soft:#DDF2E6; --warn:#B8731F; --warn-soft:#FBEBD2; --bad:#C24747; --bad-soft:#F8DEDE;
-  --on-warn:#FFFFFF;
+  --on-warn:#FFFFFF; --mark-title:#F6D64A;
   --shadow:0 1px 2px rgba(23,31,51,.06),0 8px 24px -12px rgba(23,31,51,.18);
   --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --body:"Public Sans",ui-sans-serif,system-ui,sans-serif;
@@ -39,7 +39,7 @@
     --bg:#10151E; --surface:#181F2B; --surface-2:#212A38; --ink:#E9EDF4; --muted:#97A2B6; --line:#2B3545;
     --hl:#E4C64B; --hl-ink:#10151E; --hl-soft:#3A3418;
     --good:#5CC48B; --good-soft:#173324; --warn:#E0A24B; --warn-soft:#3A2B14; --bad:#E57373; --bad-soft:#3C1E1E;
-    --on-warn:#10151E;
+    --on-warn:#10151E; --mark-title:#7A6614;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
   }
 }
@@ -48,7 +48,7 @@
   --bg:#10151E; --surface:#181F2B; --surface-2:#212A38; --ink:#E9EDF4; --muted:#97A2B6; --line:#2B3545;
   --hl:#E4C64B; --hl-ink:#10151E; --hl-soft:#3A3418;
   --good:#5CC48B; --good-soft:#173324; --warn:#E0A24B; --warn-soft:#3A2B14; --bad:#E57373; --bad-soft:#3C1E1E;
-  --on-warn:#10151E;
+  --on-warn:#10151E; --mark-title:#7A6614;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
 }
 *{box-sizing:border-box}
@@ -68,7 +68,7 @@ a{color:inherit;text-underline-offset:2px}
 /* header */
 .top{grid-area:top;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-bottom:12px;border-bottom:1px solid var(--line)}
 .brand h1{font-size:30px;font-weight:700;letter-spacing:-.02em}
-.brand h1 mark{background:linear-gradient(transparent 55%,var(--hl) 55%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 2px}
+.brand h1 mark{background:linear-gradient(transparent 55%,var(--mark-title) 55%,var(--mark-title) 92%,transparent 92%);color:inherit;padding:0 2px}
 .brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
 .stats{display:flex;gap:18px;font-variant-numeric:tabular-nums}
 .stat{display:flex;flex-direction:column;align-items:flex-start}
