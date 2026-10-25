@@ -63,7 +63,7 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
 code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:4px}
 a{color:inherit;text-underline-offset:2px}
 
-.app{max-width:1180px;margin:0 auto;padding-block:20px 40px;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"top top" "nav main" "side main";grid-template-rows:auto auto 1fr;gap:16px 24px;align-items:start}
+.app{max-width:1180px;margin:0 auto;padding-block:20px 40px;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:330px minmax(0,1fr);grid-template-areas:"top top" "nav main" "side main";grid-template-rows:auto auto 1fr;gap:16px 24px;align-items:start}
 
 /* header */
 .top{grid-area:top;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-bottom:12px;border-bottom:1px solid var(--line)}
@@ -78,11 +78,12 @@ a{color:inherit;text-underline-offset:2px}
 
 /* nav: segmented on desktop, tab bar on phones */
 .nav{grid-area:nav;display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:10px}
-.nav button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;position:relative;border:0;background:transparent;border-radius:7px;padding:8px 10px;font-weight:600;color:var(--muted)}
+.nav button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;position:relative;border:0;background:transparent;border-radius:7px;padding:8px 6px;font-weight:600;color:var(--muted);font-size:14px}
 .nav button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
 .nav svg{display:none;width:24px;height:24px;flex:none}
 .badge{font:700 11px/1 var(--body);font-variant-numeric:tabular-nums;background:var(--warn);color:var(--on-warn);border-radius:999px;padding:3px 6px;min-width:18px;text-align:center}
 .lbl-narrow{display:none}
+.nav .badge{display:none}
 
 /* word list */
 .side{grid-area:side;display:flex;flex-direction:column;gap:12px;min-width:0}
@@ -183,6 +184,40 @@ textarea:focus,.field:focus{border-color:var(--ink);outline:none}
 .empty{text-align:center;padding:40px 20px;color:var(--muted)}
 .empty h3{font-size:22px;color:var(--ink);margin-bottom:8px}
 
+/* conditionals */
+.vhint{color:var(--muted);font-family:var(--body);font-size:.72em;font-weight:500;margin-left:4px;white-space:nowrap}
+.vw{text-decoration:underline;text-decoration-color:var(--hl);text-decoration-thickness:3px;text-underline-offset:4px}
+.situation{margin:14px 0 0;padding:10px 14px;border-radius:10px;background:var(--surface-2);font-size:14px;color:var(--muted);max-width:66ch}
+.situation b{color:var(--ink);font-weight:600}
+.rule-hint{margin:10px 0 12px;font-size:14px;color:var(--muted)}
+.rule{margin-top:12px;padding:12px 14px;border-radius:10px;border:1px dashed var(--line);font-size:14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.rule span{flex-basis:100%;color:var(--muted)}
+.wordline{margin:10px 0 0}
+.gfields{display:grid;gap:10px;margin-top:6px}
+.gfield{display:grid;grid-template-columns:minmax(9ch,auto) 1fr;gap:10px;align-items:center;font-size:15px}
+.gfield > span:first-child{color:var(--muted);font-size:14px}
+.gfield .ok{color:var(--good);font-weight:600}
+.gfield .no{font-weight:600}
+.gfield .no s{color:var(--bad);font-weight:400}
+.grades.one{grid-template-columns:1fr} .grades.two{grid-template-columns:1fr 1fr}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.chips button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:600;color:var(--muted);min-height:38px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.meters{display:grid;gap:12px}
+.meter{display:grid;grid-template-columns:7ch 1fr 9ch;gap:12px;align-items:center;font-size:14px;font-variant-numeric:tabular-nums}
+.meter .bar{height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.meter .bar i{display:block;height:100%;border-radius:4px;background:var(--muted)}
+.meter .bar i.good{background:var(--good)} .meter .bar i.warn{background:var(--warn)} .meter .bar i.bad{background:var(--bad)}
+.meter .val{color:var(--muted);text-align:right}
+details.rule-d{border-top:1px solid var(--line);padding:10px 0}
+details.rule-d summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+details.rule-d summary::-webkit-details-marker{display:none}
+details.rule-d summary::before{content:"+";font-family:var(--mono);color:var(--muted);width:1ch}
+details.rule-d[open] summary::before{content:"−"}
+details.rule-d p{margin:8px 0 0 calc(1ch + 10px);max-width:62ch}
+details.rule-d .ex{color:var(--muted)}
+.typechip{display:inline-block;font:600 10px/1.6 var(--body);letter-spacing:.06em;text-transform:uppercase;background:var(--hl-soft);border-radius:999px;padding:1px 8px;margin-left:4px;vertical-align:middle}
+
 /* add + settings */
 .hint{font-size:13px;color:var(--muted);margin:8px 0 0}
 .banner{padding:10px 14px;border-radius:10px;background:var(--warn-soft);font-size:14px;margin-top:12px}
@@ -225,7 +260,10 @@ textarea:focus,.field:focus{border-color:var(--ink);outline:none}
   .nav button[aria-selected="true"] svg{color:var(--ink)}
   .nav button[aria-selected="true"] .ic-fill{fill:var(--hl)}
   .nav svg{display:block}
-  .nav .badge{position:absolute;top:3px;left:calc(50% + 5px)}
+  .nav .badge{display:inline-block;position:absolute;top:3px;left:calc(50% + 5px)}
+  .nav button,.nav button[aria-selected="true"]{font-size:11px}
+  .meter{grid-template-columns:6ch 1fr 8ch}
+  .gfield{grid-template-columns:1fr}
   .lbl-wide{display:none} .lbl-narrow{display:inline}
   body[data-pane="list"] .main{display:none}
   body[data-pane="detail"] .side,body[data-pane="other"] .side{display:none}
@@ -269,6 +307,10 @@ textarea:focus,.field:focus{border-color:var(--ink);outline:none}
     <button role="tab" data-view="review" aria-selected="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="ic-fill" fill="none" x="3.5" y="7" width="13" height="13.5" rx="2"/><path d="M8 3.5h10.5a2 2 0 0 1 2 2V16"/></svg>
       <span>Review</span><b class="badge" id="due-badge" hidden></b>
+    </button>
+    <button role="tab" data-view="grammar" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-6.5"/><path d="M12 14.5 6.5 9V4"/><path d="M12 14.5 17.5 9V4"/><path d="M4.5 6 6.5 4l2 2M15.5 6l2-2 2 2"/><circle class="ic-fill" fill="none" cx="12" cy="14.5" r="2"/></svg>
+      <span>Grammar</span>
     </button>
     <button role="tab" data-view="add" aria-selected="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle class="ic-fill" fill="none" cx="12" cy="12" r="8.5"/><path d="M12 8.2v7.6M8.2 12h7.6"/></svg>
@@ -315,8 +357,10 @@ const state = {
   deleted: new Set(),     // slugs removed on this device (local mode only)
   view: narrowMq.matches ? "review" : "learn",
   current: null, detail: false, filter: "", listScroll: 0,
-  review: null,
-  settings: { gloss: "", answer: "auto" },
+  review: null, gsession: null,
+  settings: { gloss: "", answer: "auto", mix: true, gfocus: "all" },
+  grammar: { stats: {}, items: {}, extra: [] },   // conditionals progress
+  gramBusy: false, gramNote: null,
   sample: null,           // artifact runtime: Claude on the viewer's account
   apiKey: "",             // GitHub Pages copy: viewer's own Anthropic API key
   db: null,
@@ -326,12 +370,27 @@ const state = {
 };
 
 // ---------- storage ----------
-const LS = { words: "ahw.words.v1", settings: "ahw.settings.v1", deleted: "ahw.deleted.v1", key: "ahw.apikey.v1" };
+const LS = { words: "ahw.words.v1", settings: "ahw.settings.v1", deleted: "ahw.deleted.v1", key: "ahw.apikey.v1", grammar: "ahw.grammar.v1" };
+const GRAMMAR_DOC = "progress/grammar";
 function lsRead(k, d){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } }
 function lsWrite(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
 function lsRemove(k){ try { localStorage.removeItem(k); } catch {} }
 function persistLocal(){ if (!state.db){ lsWrite(LS.words, state.words); lsWrite(LS.deleted, [...state.deleted]); } }
 function saveSettings(){ lsWrite(LS.settings, state.settings); }
+// Conditionals progress: one small document, written at most once every second or so.
+let gramTimer = null, gramWriting = false, gramDirty = false;
+function saveGrammar(now){
+  if (!state.db){ lsWrite(LS.grammar, state.grammar); return; }
+  gramDirty = true; clearTimeout(gramTimer);
+  gramTimer = setTimeout(flushGrammar, now ? 0 : 1200);
+}
+async function flushGrammar(){
+  if (gramWriting || !gramDirty || !state.db) return;
+  gramWriting = true; gramDirty = false;
+  try { await state.db.doc(GRAMMAR_DOC).set(state.grammar); } catch (e){ console.warn(e); }
+  gramWriting = false;
+  if (gramDirty) flushGrammar();
+}
 
 // Updates state synchronously, then writes to the shared db (artifact) or this device (GitHub Pages).
 function saveWord(doc, opts = {}){
@@ -442,6 +501,7 @@ function renderMain(){
   const saved = $$("[data-keep]", main).map(el => ({ key: el.dataset.keep, value: el.value, focused: document.activeElement === el, s: el.selectionStart, e: el.selectionEnd }));
   if (state.view === "learn") renderLearn();
   else if (state.view === "review") renderReview();
+  else if (state.view === "grammar") renderGrammar();
   else renderAdd();
   for (const k of saved){
     if (state.resetDrafts.has(k.key)) continue;
@@ -478,6 +538,7 @@ function renderLearn(){
     ${w.gloss ? `<p class="gloss">${esc(w.gloss)}</p>` : ""}
     ${(w.examples || []).length ? `<ul class="examples">${w.examples.map(e => `<li>${highlight(e, w.word)}</li>`).join("")}</ul>` : ""}
     ${w.tip ? `<p class="tip"><b>At work:</b> ${esc(w.tip)}</p>` : ""}
+    ${condExamplesHtml(w)}
     <div class="row mt">
       ${ai ? `<button class="btn" id="btn-more" ${state.moreBusy ? "disabled" : ""}>${state.moreBusy === w.slug ? "Thinking…" : "More examples"}</button>` : ""}
       ${ai && !w.meaning ? `<button class="btn hl" id="btn-fill" ${state.busy ? "disabled" : ""}>Fill in meaning</button>` : ""}
@@ -516,6 +577,11 @@ function renderLearn(){
     if ((e.metaKey || e.ctrlKey) && e.key === "Enter"){ e.preventDefault(); ai ? checkSentence(w) : $("#btn-save").click(); }
   });
 }
+function condExamplesHtml(w){
+  const items = allItems().filter(it => it.word === w.slug).slice(0, 3);
+  if (!items.length) return "";
+  return `<p class="label" style="margin-top:18px">In a conditional</p><ul class="examples cond">${items.map(it => `<li>${markWord(esc(it.full), w.word)} <span class="typechip">${STAT_LABEL[statKey(it.type)]}</span></li>`).join("")}</ul>`;
+}
 function openWord(slug){
   state.current = slug; state.view = "learn"; state.learnFb = null;
   if (narrowMq.matches){
@@ -537,7 +603,13 @@ function keepSentence(w, text, result){
   toast("Saved to this word");
 }
 
-// ---------- review ----------
+// ---------- sessions ----------
+// One engine runs both tabs: Review (words, optionally mixed with conditionals) and Grammar (conditionals only).
+const GSESSION = 12, GMIX = 4;
+const sess = () => state.view === "grammar" ? state.gsession : state.view === "review" ? state.review : null;
+function setSess(s){ if (state.view === "grammar") state.gsession = s; else state.review = s; }
+const alive = (r, idx) => (state.review === r || state.gsession === r) && r.i === idx;
+const wordOf = e => state.words[e.slug] || e.doc;
 function answerMode(){
   const a = state.settings.answer;
   return a === "tap" || a === "type" ? a : (coarseMq.matches ? "tap" : "type");
@@ -549,24 +621,43 @@ function segHtml(){
 function wireSeg(){
   $$("[data-answer]", main).forEach(b => b.onclick = () => {
     state.settings.answer = b.dataset.answer; saveSettings();
-    const r = state.review;
-    if (r && r.i < r.queue.length && !r.revealed) r.tap = answerMode() === "tap";
+    for (const r of [state.review, state.gsession]) if (r && r.i < r.queue.length && !r.revealed) r.tap = answerMode() === "tap";
     renderMain();
   });
 }
 function startReview(free){
   const pool = shuffle(Object.values(state.words).filter(w => free || isDue(w)));
-  const queue = pool.slice(0, SESSION);
-  if (!queue.length) return;
-  state.review = { queue, i: 0, total: queue.length, done: 0, free: !!free };
-  nextCard(); render(); window.scrollTo(0, 0);
+  const mix = state.settings.mix !== false;
+  const words = pool.slice(0, mix ? SESSION - GMIX : SESSION);
+  if (!words.length) return;
+  const queue = words.map(w => ({ kind: "word", slug: w.slug, doc: w }));
+  if (mix){
+    // Conditionals built on the words in this session come first, so both get practiced together.
+    for (const g of pickGrammar(GMIX, "all", new Set(words.map(w => w.slug)), true)) queue.splice(1 + Math.floor(Math.random() * queue.length), 0, g);
+  }
+  state.review = { kind: "review", queue, i: 0, total: queue.length, done: 0, right: 0, free: !!free, label: free ? "Free practice" : "Review" };
+  nextCard(state.review); render(); window.scrollTo(0, 0);
 }
-function nextCard(){
-  const r = state.review;
-  Object.assign(r, { revealed: false, correct: null, fb: null, text: "", picked: null, checking: false, error: null, sentence: null, options: null });
-  const w = r.queue[r.i]; if (!w) return;
+function startGrammar(){
+  const queue = pickGrammar(GSESSION, state.settings.gfocus || "all");
+  if (!queue.length) return;
+  state.gramNote = null;
+  state.gsession = { kind: "grammar", queue, i: 0, total: queue.length, done: 0, right: 0, label: "Conditionals" };
+  nextCard(state.gsession); render(); window.scrollTo(0, 0);
+}
+function nextCard(r){
+  Object.assign(r, { revealed: false, correct: null, fb: null, text: "", picked: null, checking: false, error: null, sentence: null, options: null, typed: null, cond: null, self: false });
+  const e = r.queue[r.i]; if (!e) return;
   r.tap = answerMode() === "tap";
-  const exs = (w.examples || []).filter(e => gapify(e, w.word));
+  if (e.kind === "gram"){
+    const it = itemById(e.id);
+    r.mode = e.mode;
+    if (it && r.mode === "verbs") r.options = shuffle([pairOf(it), ...it.wrong]);
+    if (it && r.mode === "identify") r.options = STAT_KEYS.slice();
+    return;
+  }
+  const w = wordOf(e);
+  const exs = (w.examples || []).filter(x => gapify(x, w.word));
   const modes = [];
   if (exs.length) modes.push("gap");
   if (w.meaning) modes.push("recall");
@@ -575,6 +666,8 @@ function nextCard(){
   r.mode = modes.length ? modes[Math.floor(Math.random() * modes.length)] : "recall";
   if (r.mode === "gap" || (r.mode === "choice" && exs.length && (!w.meaning || Math.random() < .5))) r.sentence = exs[Math.floor(Math.random() * exs.length)];
   if (r.mode === "choice") r.options = buildOptions(w);
+  // Some writing cards also ask for a conditional, so vocabulary and grammar get practiced in one sentence.
+  if (r.mode === "write" && Math.random() < .4) r.cond = COND_TASKS[Math.floor(Math.random() * COND_TASKS.length)];
 }
 // Four options: the right word plus three from your own list, preferring the same part of speech.
 function buildOptions(w){
@@ -583,11 +676,47 @@ function buildOptions(w){
   const same = shuffle(others.filter(x => kind(x.pos) === kind(w.pos))), rest = shuffle(others.filter(x => kind(x.pos) !== kind(w.pos)));
   return shuffle([w.word, ...[...same, ...rest].slice(0, 3).map(x => x.word)]);
 }
-function renderReview(){
-  const r = state.review;
-  if (!r) return renderReviewStart();
-  if (r.i >= r.queue.length) return renderReviewDone();
-  const w0 = r.queue[r.i], w = state.words[w0.slug] || w0;
+function renderReview(){ const r = state.review; if (!r) return renderReviewStart(); renderSession(r); }
+function renderGrammar(){ const r = state.gsession; if (!r) return renderGrammarStart(); renderSession(r); }
+function renderSession(r){
+  if (r.i >= r.queue.length) return renderDone(r);
+  const e = r.queue[r.i];
+  if (e.kind === "gram"){
+    const it = itemById(e.id);
+    if (!it){ r.queue.splice(r.i, 1); r.total = r.queue.length; nextCard(r); return renderSession(r); }
+    return renderGramCard(r, it);
+  }
+  renderWordCard(r, wordOf(e));
+}
+function cardShell(r, inner){
+  return `<section class="card flash${r.revealed ? " swipeable" : ""}" id="flash">
+    <div class="review-head"><span class="muted small">${esc(r.label)} · ${r.i + 1} of ${r.total}</span><button class="btn ghost small" id="btn-quit">End session</button></div>
+    <div class="progress" aria-hidden="true"><i style="width:${(r.i / r.total) * 100}%"></i></div>
+    ${inner}
+  </section>`;
+}
+function optionsHtml(r, labelOf, correctValue){
+  return `<div class="options">${r.options.map((o, i) => {
+    const cls = r.revealed ? (o === correctValue ? "right" : o === r.picked ? "wrong" : "dim") : "";
+    return `<button class="opt ${cls}" data-opt="${i}" ${r.revealed ? "disabled" : ""}><kbd>${i + 1}</kbd><span>${esc(labelOf(o))}</span></button>`;
+  }).join("")}</div>`;
+}
+function writeBoxHtml(r, cta){
+  return `<textarea id="answer" data-keep="answer:${r.i}" rows="3" placeholder="Your sentence…" aria-label="Your sentence" ${r.checking ? "disabled" : ""}></textarea>
+    <div class="row mt"><button class="btn primary" id="btn-check" ${r.checking ? "disabled" : ""}>${r.checking ? "Checking…" : cta}</button><button class="btn ghost" id="btn-skip" ${r.checking ? "disabled" : ""}>Skip</button><span class="small muted kbd-hint">⌘/Ctrl + Enter</span></div>
+    ${r.error ? `<div class="banner bad">${esc(r.error)}</div>` : ""}`;
+}
+const ruleHint = type => `<p class="rule-hint">Use a ${esc(TYPES[type].name)}: <code>${esc(TYPES[type].form)}</code></p>`;
+function wireCommon(r, swipeLeft, swipeRight){
+  const idx = r.i;
+  $("#btn-quit").onclick = () => { setSess(null); render(); };
+  $$(".opt", main).forEach(b => b.onclick = () => pickOption(Number(b.dataset.opt)));
+  $$(".grades button", main).forEach(b => b.onclick = () => gradeCard(b.dataset.g, idx));
+  if (r.revealed) attachSwipe($("#flash"), () => gradeCard(swipeLeft, idx), () => gradeCard(swipeRight, idx));
+}
+
+// ----- word cards -----
+function renderWordCard(r, w){
   // A word edited mid-session may no longer match its sentence; fall back to a meaning card.
   if (r.sentence && !gapify(r.sentence, w.word)){ r.sentence = null; if (r.mode === "gap") r.mode = "recall"; }
   if (r.mode === "choice" && !r.sentence && !w.meaning) r.mode = "recall";
@@ -599,42 +728,26 @@ function renderReview(){
       ? `<p class="label">Pick the word that fits</p><p class="prompt">${gapHtml(gapify(r.sentence, w.word), r.revealed)}</p>`
       : `<p class="label">Pick the word for this meaning</p><p class="prompt">${esc(w.meaning || "")}</p>`;
   } else if (r.mode === "write"){
-    prompt = `<p class="label">Write a sentence with</p><p class="prompt"><mark>${esc(w.word)}</mark> <span class="pos">${esc(w.pos || "")}</span></p><p class="muted small">${esc(w.meaning || "")} Make it something you could say at work.</p>`;
+    prompt = `<p class="label">Write a sentence with</p><p class="prompt"><mark>${esc(w.word)}</mark> <span class="pos">${esc(w.pos || "")}</span></p><p class="muted small">${esc(w.meaning || "")} Make it something you could say at work.</p>${r.cond ? ruleHint(r.cond) : ""}`;
   } else {
     prompt = `<p class="label">Which word or phrase is this?</p><p class="prompt">${esc(w.meaning || "(no meaning yet)")}</p>${w.pos ? `<p class="muted small">${esc(w.pos)}</p>` : ""}`;
   }
-  let body = "";
-  if (r.mode === "choice"){
-    body = `<div class="options">${r.options.map((o, i) => {
-      const cls = r.revealed ? (o === w.word ? "right" : o === r.picked ? "wrong" : "dim") : "";
-      return `<button class="opt ${cls}" data-opt="${i}" ${r.revealed ? "disabled" : ""}><kbd>${i + 1}</kbd><span>${esc(o)}</span></button>`;
-    }).join("")}</div>`;
-  }
+  let body = r.mode === "choice" ? optionsHtml(r, o => o, w.word) : "";
   if (!r.revealed){
-    if (r.mode === "write"){
-      body += `<textarea id="answer" data-keep="answer:${r.i}" rows="3" placeholder="Your sentence…" aria-label="Your sentence" ${r.checking ? "disabled" : ""}></textarea>
-        <div class="row mt"><button class="btn primary" id="btn-check" ${r.checking ? "disabled" : ""}>${r.checking ? "Checking…" : "Check with Claude"}</button><button class="btn ghost" id="btn-skip" ${r.checking ? "disabled" : ""}>Skip</button><span class="small muted kbd-hint">⌘/Ctrl + Enter</span></div>
-        ${r.error ? `<div class="banner bad">${esc(r.error)}</div>` : ""}`;
-    } else if (r.mode !== "choice"){
+    if (r.mode === "write") body += writeBoxHtml(r, "Check with Claude");
+    else if (r.mode !== "choice"){
       body += r.tap
         ? `<button class="btn hl big wide reveal" id="btn-show">Show answer</button>`
         : `<input class="answer" id="answer" data-keep="answer:${r.i}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Type your answer" aria-label="Your answer">
            <div class="row mt"><button class="btn primary" id="btn-check">Check</button><button class="btn ghost" id="btn-show">Show answer</button></div>`;
     }
   } else {
-    body += resultHtml(r, w) + gradesHtml(r, w);
+    body += wordResultHtml(r, w) + wordGradesHtml(r, w);
   }
-  main.innerHTML = `<section class="card flash${r.revealed ? " swipeable" : ""}" id="flash">
-    <div class="review-head"><span class="muted small">${r.free ? "Free practice" : "Review"} · ${r.i + 1} of ${r.total}</span><button class="btn ghost small" id="btn-quit">End session</button></div>
-    <div class="progress" aria-hidden="true"><i style="width:${(r.i / r.total) * 100}%"></i></div>
-    ${prompt}${body}
-  </section>`;
-
-  const idx = r.i;
-  $("#btn-quit").onclick = () => { state.review = null; render(); };
-  $$(".opt", main).forEach(b => b.onclick = () => pickOption(Number(b.dataset.opt)));
-  $("#btn-show")?.addEventListener("click", () => reveal(r.tap ? null : false));
-  $("#btn-skip")?.addEventListener("click", () => { r.fb = null; reveal(false); });
+  main.innerHTML = cardShell(r, prompt + body);
+  wireCommon(r, "again", "good");
+  $("#btn-show")?.addEventListener("click", () => revealOn(r, r.tap ? null : false));
+  $("#btn-skip")?.addEventListener("click", () => { r.fb = null; revealOn(r, false); });
   $("#btn-check")?.addEventListener("click", () => r.mode === "write" ? checkWrite() : checkTyped());
   const a = $("#answer");
   if (a){
@@ -644,18 +757,16 @@ function renderReview(){
     });
     if (!coarseMq.matches && !r.checking) a.focus({ preventScroll: true });
   }
-  $$(".grades button", main).forEach(b => b.onclick = () => gradeCard(b.dataset.g, idx));
-  if (r.revealed) attachSwipe($("#flash"), () => gradeCard("again", idx), () => gradeCard("good", idx));
 }
-function resultHtml(r, w){
-  if (r.mode === "write") return r.fb ? feedbackHtml(r.fb, r.text) : `<div class="result neutral">Skipped. One example: ${highlight((w.examples || [])[0] || "", w.word)}</div>`;
+function wordResultHtml(r, w){
+  if (r.mode === "write") return r.fb ? feedbackHtml(r.fb, r.text, false, r.cond) : `<div class="result neutral">Skipped. One example: ${highlight((w.examples || [])[0] || "", w.word)}</div>`;
   if (r.mode === "choice") return `<div class="result ${r.correct ? "right" : "wrong"}"><b>${r.correct ? "Correct." : "Not quite."}</b> ${esc(w.word)}: ${esc(w.meaning || "")}</div>`;
   const ex = r.mode === "recall" && (w.examples || [])[0] ? `<span class="ex">${highlight(w.examples[0], w.word)}</span>` : "";
   if (r.correct === null) return `<div class="result neutral">The answer is <b>${esc(w.word)}</b>.${ex}</div>`;
   return `<div class="result ${r.correct ? "right" : "wrong"}"><b>${r.correct ? "Correct." : "Not quite."}</b> The answer is <b>${esc(w.word)}</b>.${ex}</div>`;
 }
 const suggested = r => r.correct === false ? "again" : "good";
-function gradesHtml(r, w){
+function wordGradesHtml(r, w){
   const s = suggested(r);
   return `<div class="grades">
       <button data-g="again" class="${s === "again" ? "suggest" : ""}">Again<small>${r.free ? "repeat" : "today"}</small></button>
@@ -664,56 +775,68 @@ function gradesHtml(r, w){
     </div>
     <p class="swipe-hint small muted">Swipe right for Good, left for Again</p>`;
 }
-function reveal(correct){ const r = state.review; if (!r || r.revealed) return; r.correct = correct; r.revealed = true; renderMain(); }
+function revealOn(r, correct){ if (!r || r.revealed) return; r.correct = correct; r.revealed = true; render(); }
 function pickOption(i){
-  const r = state.review; if (!r || r.revealed || r.mode !== "choice") return;
-  const w0 = r.queue[r.i], w = state.words[w0.slug] || w0, o = r.options[i];
-  if (o === undefined) return;
-  r.picked = o; reveal(o === w.word);
+  const r = sess(); if (!r || r.revealed || !r.options) return;
+  const o = r.options[i]; if (o === undefined) return;
+  const e = r.queue[r.i];
+  r.picked = o;
+  if (e.kind === "gram"){ const it = itemById(e.id); revealOn(r, !!it && (r.mode === "identify" ? o === statKey(it.type) : o === pairOf(it))); }
+  else revealOn(r, o === wordOf(e).word);
 }
 function checkTyped(){
-  const r = state.review; if (!r || r.revealed) return;
-  const w0 = r.queue[r.i], w = state.words[w0.slug] || w0;
+  const r = sess(); if (!r || r.revealed) return;
+  const w = wordOf(r.queue[r.i]);
   const v = norm($("#answer")?.value || "");
-  if (!v){ reveal(false); return; }
+  if (!v){ revealOn(r, false); return; }
   const targets = [norm(w.word)];
   if (r.mode === "gap"){ const g = gapify(r.sentence, w.word); if (g) targets.push(norm(g.answer)); }
-  reveal(targets.some(t => v === t || v.includes(t) || (t.includes(v) && v.length >= Math.max(3, Math.ceil(t.length * .6)))));
+  revealOn(r, targets.some(t => v === t || v.includes(t) || (t.includes(v) && v.length >= Math.max(3, Math.ceil(t.length * .6)))));
 }
 async function checkWrite(){
-  const r = state.review; if (!r || r.checking || r.revealed) return;
+  const r = sess(); if (!r || r.checking || r.revealed) return;
   const text = ($("#answer")?.value || "").trim(); if (!text) return;
-  const idx = r.i, w0 = r.queue[idx], w = state.words[w0.slug] || w0;
+  const idx = r.i, w = wordOf(r.queue[idx]);
   r.checking = true; r.error = null; r.text = text; renderMain();
   try {
-    const fb = await judgeSentence(w, text);
-    if (state.review !== r || r.i !== idx) return;
-    r.checking = false; r.fb = fb; reveal(fb.verdict !== "off");
+    const fb = r.cond ? await judgeConditional({ type: r.cond, text, word: w }) : await judgeSentence(w, text);
+    if (!alive(r, idx)) return;
+    if (r.cond) recordGrammar(null, r.cond, fb.verdict !== "off");
+    r.checking = false; r.fb = fb; revealOn(r, fb.verdict !== "off");
   } catch (e){
-    if (state.review !== r || r.i !== idx) return;
-    r.checking = false; r.error = aiFail(shapeError(e)); renderMain();
+    if (!alive(r, idx)) return;
+    r.checking = false; r.error = aiFail(shapeError(e)); render();
   }
 }
 function gradeCard(g, idx){
-  const r = state.review; if (!r || r.i !== idx || !r.revealed) return;
-  const w0 = r.queue[idx];
-  let doc = state.words[w0.slug] || w0, changed = false;
-  if (r.mode === "write" && r.fb && r.fb.verdict !== "off"){
-    doc = { ...doc, sentences: [...(doc.sentences || []), { text: r.text, corrected: r.fb.corrected || r.text, verdict: r.fb.verdict, at: today() }] };
-    changed = true;
+  const r = sess(); if (!r || r.i !== idx || !r.revealed) return;
+  const e = r.queue[idx];
+  if (e.kind === "gram"){
+    const it = itemById(e.id);
+    const correct = g === "hit" ? true : g === "miss" ? false : !!r.correct;
+    if (it) recordGrammar(it.id, it.type, correct);
+    if (correct) r.right++;
+    else if (!e.again){ r.queue.push({ ...e, again: true }); r.total = r.queue.length; }
+  } else {
+    let doc = wordOf(e), changed = false;
+    if (r.mode === "write" && r.fb && r.fb.verdict !== "off"){
+      doc = { ...doc, sentences: [...(doc.sentences || []), { text: r.text, corrected: r.fb.corrected || r.text, verdict: r.fb.verdict, at: today() }] };
+      changed = true;
+    }
+    if (!r.free){ doc = grade(doc, g); changed = true; }
+    if (changed && state.words[doc.slug]) saveWord(doc, { quiet: true });
+    if (g === "again"){ r.queue.push(e); r.total = r.queue.length; }
   }
-  if (!r.free){ doc = grade(doc, g); changed = true; }
-  if (changed && state.words[doc.slug]) saveWord(doc, { quiet: true });
-  if (g === "again"){ r.queue.push(w0); r.total = r.queue.length; }
-  r.done++; r.i++; nextCard(); render(); window.scrollTo(0, 0);
+  r.done++; r.i++; nextCard(r); render(); window.scrollTo(0, 0);
 }
 function renderReviewStart(){
-  const all = Object.values(state.words), due = all.filter(isDue).length;
+  const all = Object.values(state.words), due = all.filter(isDue).length, mix = state.settings.mix !== false;
   const kinds = ["pick one of four", "fill the gap", "recall the word from its meaning"];
   if (aiReady()) kinds.push("write your own sentence for Claude to check");
   main.innerHTML = `<section class="card start">
     <h3>${state.loading && !all.length ? "Loading…" : due ? `${plural(due, "word")} ready for review` : all.length ? "All caught up" : "No words yet"}</h3>
-    <p class="muted">${due ? `Each session is up to ${SESSION} cards, mixed: ${listJoin(kinds)}. Rate each card honestly and the schedule takes care of itself.` : all.length ? "Nothing is due today. Free practice doesn't change the schedule." : "Add some words in the Add tab first."}</p>
+    <p class="muted">${due ? `Each session is up to ${SESSION} cards, mixed: ${listJoin(kinds)}.${mix ? ` ${GMIX} of them are conditionals built on the same words.` : ""} Rate each card honestly and the schedule takes care of itself.` : all.length ? "Nothing is due today. Free practice doesn't change the schedule." : "Add some words in the Add tab first."}</p>
+    <div class="answer-by"><span class="label">Cards</span><div class="seg" role="group" aria-label="Cards"><button data-mix="off" aria-pressed="${!mix}">Words only</button><button data-mix="on" aria-pressed="${mix}">Words + conditionals</button></div></div>
     <div class="answer-by"><span class="label">Answer by</span>${segHtml()}</div>
     <div class="row center mt">
       ${due ? `<button class="btn hl big" id="btn-start">Start review</button>` : ""}
@@ -722,18 +845,28 @@ function renderReviewStart(){
   </section>`;
   $("#btn-start")?.addEventListener("click", () => startReview(false));
   $("#btn-free")?.addEventListener("click", () => startReview(true));
+  $$("[data-mix]", main).forEach(b => b.onclick = () => { state.settings.mix = b.dataset.mix === "on"; saveSettings(); renderMain(); });
   wireSeg();
 }
-function renderReviewDone(){
-  const r = state.review, dueLeft = Object.values(state.words).filter(isDue).length;
-  const more = r.free ? `<button class="btn hl big" id="btn-more-cards">Practice more</button>` : dueLeft ? `<button class="btn hl big" id="btn-more-cards">Keep going</button>` : "";
-  main.innerHTML = `<section class="card start">
-    <h3>Session done</h3>
-    <p class="muted">${plural(r.done, "card")} reviewed. ${r.free ? "Free practice doesn't change the schedule." : dueLeft ? `${plural(dueLeft, "more word")} due today.` : "Your next reviews are scheduled."}</p>
-    <div class="row center mt">${more}<button class="btn" id="btn-finish">Done</button></div>
-  </section>`;
-  $("#btn-more-cards")?.addEventListener("click", () => startReview(r.free));
-  $("#btn-finish").onclick = () => { state.review = null; render(); };
+function renderDone(r){
+  if (r.kind === "grammar"){
+    main.innerHTML = `<section class="card start">
+      <h3>Practice done</h3>
+      <p class="muted">You got ${r.right} of ${plural(r.done, "answer")} right. Mistakes came back once at the end of the session.</p>
+      <div class="row center mt"><button class="btn hl big" id="btn-more-cards">Practice more</button><button class="btn" id="btn-finish">Done</button></div>
+    </section>`;
+    $("#btn-more-cards").onclick = startGrammar;
+  } else {
+    const dueLeft = Object.values(state.words).filter(isDue).length;
+    const more = r.free ? `<button class="btn hl big" id="btn-more-cards">Practice more</button>` : dueLeft ? `<button class="btn hl big" id="btn-more-cards">Keep going</button>` : "";
+    main.innerHTML = `<section class="card start">
+      <h3>Session done</h3>
+      <p class="muted">${plural(r.done, "card")} reviewed. ${r.free ? "Free practice doesn't change the schedule." : dueLeft ? `${plural(dueLeft, "more word")} due today.` : "Your next reviews are scheduled."}</p>
+      <div class="row center mt">${more}<button class="btn" id="btn-finish">Done</button></div>
+    </section>`;
+    $("#btn-more-cards")?.addEventListener("click", () => startReview(r.free));
+  }
+  $("#btn-finish").onclick = () => { setSess(null); render(); };
 }
 // Horizontal swipe on a revealed card: right = Good, left = Again. Vertical drags scroll as usual.
 function attachSwipe(el, onLeft, onRight){
@@ -766,6 +899,332 @@ function attachSwipe(el, onLeft, onRight){
   };
   el.addEventListener("pointerup", end);
   el.addEventListener("pointercancel", end);
+}
+
+// ---------- conditionals ----------
+const TYPES = {
+  zero:         { label: "Zero",   name: "zero conditional",   form: "If + present simple, present simple", use: "Facts, rules and things that always happen." },
+  first:        { label: "First",  name: "first conditional",  form: "If + present simple, will + verb", use: "A real, likely situation in the future." },
+  second:       { label: "Second", name: "second conditional", form: "If + past simple, would + verb", use: "An imagined or unlikely situation now or in the future. Use “were” for every person: if I were." },
+  third:        { label: "Third",  name: "third conditional",  form: "If + past perfect, would have + past participle", use: "An imagined past: it didn't happen, and neither did the result." },
+  mixedPast:    { label: "Mixed",  name: "mixed conditional (past cause, present result)", form: "If + past perfect, would + verb", use: "Something didn't happen in the past, and you feel the result now." },
+  mixedPresent: { label: "Mixed",  name: "mixed conditional (present cause, past result)", form: "If + past simple, would have + past participle", use: "Something isn't true in general, and that changed a past result." },
+};
+const TYPE_ORDER = ["zero", "first", "second", "third", "mixedPast", "mixedPresent"];
+const STAT_KEYS = ["zero", "first", "second", "third", "mixed"];
+const STAT_LABEL = { zero: "Zero", first: "First", second: "Second", third: "Third", mixed: "Mixed" };
+const FOCUS = ["all", ...STAT_KEYS];
+const COND_TASKS = ["first", "second", "second", "third", "third", "mixedPast", "mixedPresent"];
+const statKey = t => String(t).startsWith("mixed") ? "mixed" : t;
+const focusMatch = (type, focus) => focus === "all" || statKey(type) === focus;
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+// [type, word slug, sentence with [answer|alternative] gaps, verb hints, three wrong answer pairs, the real situation]
+const BANK = [
+  ["zero", "cluttered", "If a screen [is] cluttered, people [miss] the main action.", "be|miss", "was / missed|were / would miss|had been / would have missed", "A general rule about interfaces."],
+  ["zero", "tick-up", "If we [add] a progress bar, completion [ticks] up a little.", "add|tick", "added / would tick|add / would tick|had added / would have ticked", "Something that happens every time we try it."],
+  ["zero", "stand-out", "If everything [is] bold, nothing [stands] out.", "be|stand", "was / stood|were / would stand|had been / would have stood", "A general design rule."],
+  ["zero", "clogged", "If nobody [owns] the queue, it [gets] clogged fast.", "own|get", "owned / would get|owns / would get|had owned / would have got", "How work queues always behave."],
+  ["zero", "caveat", "If a number [has] a caveat, we [mention] it in the summary.", "have|mention", "had / would mention|has / would mention|had had / would have mentioned", "Our team's usual rule for reports."],
+  ["first", "ramp-up", "If I [ramp] up on the booking flow this week, I [will be|'ll be] ready for the sprint.", "ramp|be", "ramped / would be|will ramp / would be|had ramped / would have been", "I have time this week, so it's a real plan."],
+  ["first", "contingency-plan", "If the build [fails] review, we [will need|'ll need] a contingency plan.", "fail|need", "failed / would need|will fail / need|had failed / would have needed", "The build is in App Store review right now."],
+  ["first", "spell-out", "If you [spell] out the edge cases, engineering [won't have|will not have] to guess.", "spell|not have", "spelled / wouldn't have|will spell / don't have|had spelled / wouldn't have had", "You're writing the ticket today."],
+  ["first", "pick-your-battles", "If we [don't pick|do not pick] our battles, we [will lose|'ll lose] the important ones.", "not pick|lose", "didn't pick / would lose|won't pick / lose|hadn't picked / would have lost", "The roadmap meeting is next week."],
+  ["first", "come-around", "She [will come|'ll come] around if she [sees] the test results.", "come|see", "would come / saw|comes / will see|would have come / had seen", "The test results arrive tomorrow."],
+  ["first", "preemptively", "If we [brief] support preemptively, they [will handle|'ll handle] the tickets calmly.", "brief|handle", "briefed / would handle|will brief / handle|had briefed / would have handled", "The pricing change ships next week."],
+  ["first", "suffice", "If a short video [suffices], we [will skip|'ll skip] the meeting.", "suffice|skip", "sufficed / would skip|will suffice / skip|had sufficed / would have skipped", "We're deciding today how to share the update."],
+  ["second", "get-ahead", "If we [had] more designers, we [would get|'d get] ahead on the specs.", "have|get", "have / will get|had had / would have got|would have / got", "We only have two designers, so we can't get ahead on the specs."],
+  ["second", "assertive", "If I [were|was] more assertive, I [would push|'d push] back on deadlines.", "be|push", "am / will push|had been / would have pushed|would be / pushed", "I'm not very assertive, so I don't push back on deadlines."],
+  ["second", "plethora", "If the app [didn't have|did not have] a plethora of filters, people [would find|'d find] hotels faster.", "not have|find", "doesn't have / will find|hadn't had / would have found|wouldn't have / found", "The app has a plethora of filters, so people find hotels slowly."],
+  ["second", "convey", "If the icon [conveyed] the refund policy, we [wouldn't need|would not need] the extra label.", "convey|not need", "conveys / won't need|had conveyed / wouldn't have needed|would convey / didn't need", "The icon doesn't convey the refund policy, so we need an extra label."],
+  ["second", "the-juice-is-worth-the-squeeze", "If the lift [were|was] bigger, the juice [would be] worth the squeeze.", "be|be", "is / will be|had been / would have been|would be / was", "The lift is small, so the juice isn't worth the squeeze."],
+  ["second", "redundant", "If we [removed] the redundant button, the sheet [would look|'d look] calmer.", "remove|look", "remove / will look|had removed / would have looked|would remove / looked", "We keep the redundant button, so the sheet looks busy."],
+  ["second", "tag-along", "If I [could] tag along to the user interviews, I [would learn|'d learn] a lot.", "can|learn", "can / will learn|could have / would have learned|can / would learn", "I can't tag along to the user interviews, so I'm missing a lot."],
+  ["second", "reconcile", "If the two platforms [shared] one design system, it [would be] easy to reconcile them.", "share|be", "share / will be|had shared / would have been|would share / was", "The two platforms don't share a design system, so they're hard to reconcile."],
+  ["second", "exaggerate", "I [wouldn't say|would not say] it if I [were|was] exaggerating.", "not say|be", "won't say / am|wouldn't have said / had been|don't say / would be", "I'm saying it because it's true. I'm not exaggerating."],
+  ["second", "itinerary", "If travelers [could] edit the itinerary offline, they [would trust|'d trust] the app more.", "can|trust", "can / will trust|could have / would have trusted|will be able to / trust", "Travelers can't edit the itinerary offline, so they don't fully trust the app."],
+  ["third", "contingency-plan", "If we [had had|'d had] a contingency plan, the outage [wouldn't have lasted|would not have lasted|would've lasted] six hours.", "have|not last", "had / wouldn't last|have / won't last|would have / hadn't lasted", "We didn't have a contingency plan, so the outage lasted six hours."],
+  ["third", "spell-out", "If the ticket [had spelled|had spelt] out the edge cases, engineering [would have caught|would've caught] the bug.", "spell|catch", "spelled / would catch|spells / will catch|would have spelled / had caught", "The ticket didn't spell out the edge cases, so engineering missed the bug."],
+  ["third", "pitfall", "We [would have avoided|would've avoided|'d have avoided] that pitfall if we [had tested|'d tested] on Android.", "avoid|test", "would avoid / tested|will avoid / test|had avoided / would have tested", "We didn't test on Android, so we fell into that pitfall."],
+  ["third", "overestimate", "If we [hadn't overestimated|had not overestimated] demand, we [wouldn't have built|would not have built] three versions.", "not overestimate|not build", "didn't overestimate / wouldn't build|don't overestimate / won't build|wouldn't have overestimated / hadn't built", "We overestimated demand, so we built three versions."],
+  ["third", "pull-off", "If the team [hadn't pulled|had not pulled] together, we [wouldn't have pulled|would not have pulled] off the launch.", "not pull|not pull", "didn't pull / wouldn't pull|don't pull / won't pull|wouldn't have pulled / hadn't pulled", "The team pulled together, so we pulled off the launch."],
+  ["third", "caveat", "If I [had mentioned|'d mentioned] the caveat, leadership [wouldn't have misinterpreted|would not have misinterpreted] the data.", "mention|not misinterpret", "mentioned / wouldn't misinterpret|mention / won't misinterpret|would have mentioned / hadn't misinterpreted", "I didn't mention the caveat, so leadership misinterpreted the data."],
+  ["third", "pushover", "If I [hadn't been|had not been] such a pushover, they [wouldn't have cut|would not have cut] the research phase.", "not be|not cut", "wasn't / wouldn't cut|am not / won't cut|wouldn't have been / hadn't cut", "I was a pushover, so they cut the research phase."],
+  ["third", "my-heart-sank", "My heart [would have sunk|would've sunk] if I [had seen|'d seen] the crash report on Friday.", "sink|see", "would sink / saw|will sink / see|had sunk / would have seen", "I only saw the crash report on Monday, after it was fixed."],
+  ["third", "preemptively", "If we [had told|'d told] support preemptively, they [wouldn't have panicked|would not have panicked].", "tell|not panic", "told / wouldn't panic|tell / won't panic|would have told / hadn't panicked", "We didn't tell support in advance, so they panicked."],
+  ["third", "vouch-for", "If nobody [had vouched] for her, she [wouldn't have gotten|wouldn't have got|would not have gotten|would not have got] the interview.", "vouch|not get", "vouched / wouldn't get|vouches / won't get|would have vouched / hadn't got", "Someone vouched for her, so she got the interview."],
+  ["mixedPast", "ramp-up", "If I [had ramped|'d ramped] up on the codebase earlier, I [would be|'d be] more confident in reviews now.", "ramp|be", "ramped / will be|had ramped / would have been|ramp / would be", "I didn't ramp up on the codebase earlier, so I'm not confident in reviews now."],
+  ["mixedPast", "embrace", "If the team [had embraced] the design system last year, we [wouldn't have|would not have] so many one-off screens today.", "embrace|not have", "embraced / won't have|embrace / don't have|had embraced / wouldn't have had", "The team didn't embrace the design system last year, so we have many one-off screens today."],
+  ["mixedPast", "chip-on-ones-shoulder", "If he [had gotten|had got] the lead role, he [wouldn't have|would not have] a chip on his shoulder now.", "get|not have", "got / won't have|had got / wouldn't have had|gets / wouldn't have", "He didn't get the lead role, so he has a chip on his shoulder now."],
+  ["mixedPast", "thought-out", "If we [had thought|'d thought] the flow out properly, we [wouldn't be|would not be] fixing it again this sprint.", "think|not be", "thought / won't be|think / aren't|had thought / wouldn't have been", "We didn't think the flow out properly, so we're fixing it again this sprint."],
+  ["mixedPast", "locked-in", "If we [had read] the contract carefully, we [wouldn't be|would not be] locked in to this vendor now.", "read|not be", "read / won't be|would have read / weren't|had read / wouldn't have been", "We didn't read the contract carefully, so we're locked in to this vendor now."],
+  ["mixedPresent", "assertive", "If I [were|was] more assertive, I [would have pushed|'d have pushed|would've pushed] back in yesterday's review.", "be|push", "had been / would push|am / will push|were / would push", "I'm not very assertive, so I didn't push back in yesterday's review."],
+  ["mixedPresent", "timid", "If she [weren't|wasn't|were not|was not] so timid, she [would have spoken|would've spoken|'d have spoken] up in the standup.", "not be|speak", "isn't / will speak|hadn't been / would speak|weren't / would speak", "She's timid, so she didn't speak up in the standup."],
+  ["mixedPresent", "get-along", "If they [got] along better, they [would have solved|would've solved|'d have solved] the conflict last week.", "get|solve", "get / will solve|had got / would solve|got / would solve", "They don't get along well, so they didn't solve the conflict last week."],
+  ["mixedPresent", "feasible", "If the feature [weren't|wasn't|were not|was not] feasible, the engineers [would have told|would've told|'d have told] us already.", "not be|tell", "isn't / will tell|hadn't been / would tell|wasn't / would tell", "The feature is feasible, and the engineers have raised no concerns."],
+  ["mixedPresent", "itinerary", "If I [knew] the itinerary by heart, I [wouldn't have missed|would not have missed] the train this morning.", "know|not miss", "had known / wouldn't miss|know / won't miss|knew / wouldn't miss", "I don't know the itinerary by heart, so I missed the train this morning."],
+];
+function compileItem(t, id){
+  const [type, word, text, hints, wrong, facts] = t;
+  const gaps = [...String(text).matchAll(/\[([^\]]+)\]/g)].map(m => m[1].split("|").map(s => s.trim()).filter(Boolean));
+  const parts = String(text).split(/\[[^\]]+\]/);
+  const full = parts.reduce((acc, p, i) => acc + p + (gaps[i] ? gaps[i][0] : ""), "");
+  return { id, type, word, gaps, parts, full, hints: String(hints || "").split("|").map(s => s.trim()), wrong: String(wrong || "").split("|").map(s => s.trim()).filter(Boolean), facts: String(facts || "") };
+}
+const pairOf = it => it.gaps.map(g => g[0]).join(" / ");
+const validItem = it => !!TYPES[it.type] && it.gaps.length === 2 && it.gaps.every(g => g.length) && it.parts.length === 3 && it.hints.length === 2 && it.wrong.length === 3 && !it.wrong.includes(pairOf(it));
+const STATIC_ITEMS = BANK.map(t => compileItem(t, `${t[0]}:${t[1]}`));
+let extraCache = { src: null, items: [] };
+function allItems(){
+  const src = state.grammar.extra;
+  if (extraCache.src !== src) extraCache = { src, items: (src || []).map(x => compileItem([x.type, x.word, x.text, x.hints, x.wrong, x.facts], x.id)).filter(validItem) };
+  return [...STATIC_ITEMS, ...extraCache.items];
+}
+const itemById = id => allItems().find(it => it.id === id) || null;
+const wordText = slug => (state.words[slug] && state.words[slug].word) || String(slug).replace(/-/g, " ");
+// Underlines the vocabulary word inside a conditional sentence, once.
+function markWord(html, word){
+  const base = stemOf(word);
+  return base ? html.replace(new RegExp(`\\b(${base}[a-z]*)`, "i"), '<span class="vw">$1</span>') : html;
+}
+function condSentence(it, revealed){
+  let html = "", marked = false;
+  it.parts.forEach((p, i) => {
+    let part = esc(p);
+    if (!marked){ const m = markWord(part, wordText(it.word)); marked = m !== part; part = m; }
+    html += part;
+    if (i < it.gaps.length) html += revealed ? `<mark>${esc(it.gaps[i][0])}</mark>` : `<span class="gap"></span><span class="vhint">(${esc(it.hints[i] || "")})</span>`;
+  });
+  return html;
+}
+// Typed verb forms: contractions count the same as full forms ("wouldn't" = "would not").
+function normVerb(s){
+  return String(s).toLowerCase().replace(/[’‘]/g, "'")
+    .replace(/\b(would|could|should|was|were|had|has|have|do|does|did|is|are)nt\b/g, "$1 not").replace(/\bwont\b/g, "will not").replace(/\bcant\b/g, "can not")
+    .replace(/\bwon't\b/g, "will not").replace(/\bcan't\b/g, "can not").replace(/\bcannot\b/g, "can not")
+    .replace(/n't\b/g, " not").replace(/'ll\b/g, " will").replace(/'ve\b/g, " have").replace(/'d\b/g, " would")
+    .replace(/[^a-z' ]/g, " ").replace(/\s+/g, " ").trim();
+}
+function gapOk(input, alts){
+  const v = normVerb(input);
+  return !!v && alts.some(a => { const t = normVerb(a); return v === t || v.endsWith(" " + t); });
+}
+// Picks conditional exercises: unseen and missed ones first, then ones built on words you're reviewing.
+function pickGrammar(n, focus, preferWords = new Set(), quick = false){
+  const progress = state.grammar.items || {};
+  const due = new Set(Object.values(state.words).filter(isDue).map(w => w.slug));
+  const now = Date.now();
+  return allItems()
+    .filter(it => focusMatch(it.type, focus))
+    .map(it => {
+      const p = progress[it.id] || {}, right = p.right || 0, wrong = p.wrong || 0;
+      let score = Math.random() * 2 + (right + wrong ? 0 : 2) + wrong * 1.5 - right * .7;
+      if (preferWords.has(it.word)) score += 3; else if (due.has(it.word)) score += 1;
+      if (p.last && now - Date.parse(p.last) < 36e5) score -= 3;
+      return { it, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, n)
+    .map(({ it }) => ({ kind: "gram", id: it.id, mode: pickMode(it, quick) }));
+}
+function pickMode(it, quick){
+  const modes = ["verbs", "verbs", "verbs", "identify"];
+  if (!quick && it.facts && !["zero", "first"].includes(it.type)) modes.push("rewrite");
+  if (!quick && aiReady()) modes.push("write");
+  return modes[Math.floor(Math.random() * modes.length)];
+}
+function renderGramCard(r, it){
+  const T = TYPES[it.type], w = state.words[it.word];
+  let prompt, body = "";
+  if (r.mode === "verbs"){
+    prompt = `<p class="label">Fill in the verbs</p>${it.facts ? `<p class="situation"><b>Situation:</b> ${esc(it.facts)}</p>` : ""}<p class="prompt">${condSentence(it, r.revealed)}</p>`;
+    if (r.tap) body = optionsHtml(r, o => o, pairOf(it));
+    else if (!r.revealed){
+      body = `<div class="gfields">${it.hints.map((h, k) => `<label class="gfield"><span>${k + 1}. (${esc(h)})</span><input class="answer" id="g${k}" data-keep="gap:${r.i}:${k}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="${k ? "done" : "next"}" aria-label="Verb ${k + 1}"></label>`).join("")}</div>
+        <div class="row mt"><button class="btn primary" id="btn-check">Check</button><button class="btn ghost" id="btn-show">Show answer</button></div>`;
+    } else if (r.typed){
+      body = `<div class="gfields">${r.typed.map((t, k) => `<div class="gfield"><span>${k + 1}.</span><span class="${t.ok ? "ok" : "no"}">${t.ok ? esc(t.v) : `${t.v ? `<s>${esc(t.v)}</s> ` : ""}${esc(it.gaps[k][0])}`}</span></div>`).join("")}</div>`;
+    }
+  } else if (r.mode === "identify"){
+    prompt = `<p class="label">Which conditional is this?</p><p class="prompt">${markWord(esc(it.full), wordText(it.word))}</p>`;
+    body = optionsHtml(r, o => STAT_LABEL[o], statKey(it.type));
+  } else if (r.mode === "rewrite"){
+    prompt = `<p class="label">Rewrite as one sentence</p><p class="situation">${esc(it.facts)}</p>${ruleHint(it.type)}`;
+    if (!r.revealed) body = aiReady() ? writeBoxHtml(r, "Check with Claude")
+      : `<textarea id="answer" data-keep="answer:${r.i}" rows="3" placeholder="If…" aria-label="Your sentence"></textarea>
+         <div class="row mt"><button class="btn primary" id="btn-model">Compare with the model answer</button></div>`;
+  } else {
+    prompt = `<p class="label">Write a sentence with</p><p class="prompt"><mark>${esc(wordText(it.word))}</mark></p>${w && w.meaning ? `<p class="muted small">${esc(w.meaning)}</p>` : ""}${ruleHint(it.type)}`;
+    if (!r.revealed) body = writeBoxHtml(r, "Check with Claude");
+  }
+  if (r.revealed) body += gramResultHtml(r, it, w) + gramGradesHtml(r);
+  main.innerHTML = cardShell(r, prompt + body);
+  wireCommon(r, r.self ? "miss" : "next", r.self ? "hit" : "next");
+  $("#btn-check")?.addEventListener("click", () => r.mode === "verbs" ? checkGaps(r, it) : checkGramWrite(r, it));
+  $("#btn-show")?.addEventListener("click", () => { r.typed = it.gaps.map(() => ({ v: "", ok: false })); revealOn(r, false); });
+  $("#btn-skip")?.addEventListener("click", () => { r.fb = null; r.self = false; revealOn(r, false); });
+  $("#btn-model")?.addEventListener("click", () => compareModel(r, it));
+  const g0 = $("#g0"), g1 = $("#g1"), a = $("#answer");
+  g0?.addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); g1?.focus(); } });
+  g1?.addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); checkGaps(r, it); } });
+  a?.addEventListener("keydown", e => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter"){ e.preventDefault(); aiReady() ? checkGramWrite(r, it) : compareModel(r, it); } });
+  const first = g0 || a;
+  if (first && !coarseMq.matches && !r.checking && !r.revealed) first.focus({ preventScroll: true });
+}
+function gramResultHtml(r, it, w){
+  const T = TYPES[it.type];
+  let head;
+  if (r.mode === "verbs") head = `<div class="result ${r.correct ? "right" : "wrong"}"><b>${r.correct ? "Correct." : "Not quite."}</b>${r.correct ? "" : ` The verbs are <b>${esc(pairOf(it))}</b>.`}</div>`;
+  else if (r.mode === "identify") head = `<div class="result ${r.correct ? "right" : "wrong"}"><b>${r.correct ? "Correct." : "Not quite."}</b> It's a ${esc(T.name)}.</div>`;
+  else if (r.fb) head = feedbackHtml(r.fb, r.text, false, it.type);
+  else head = `<div class="result neutral">${r.text ? `<span class="ex">You wrote: ${esc(r.text)}</span>` : ""}<b>Model answer:</b> ${markWord(esc(it.full), wordText(it.word))}</div>`;
+  return `${head}
+    <div class="rule"><b>${esc(cap(T.name))}</b> <code>${esc(T.form)}</code><span>${esc(T.use)}</span></div>
+    ${w && w.meaning ? `<p class="small muted wordline"><b>${esc(w.word)}</b>: ${esc(w.meaning)}</p>` : ""}`;
+}
+function gramGradesHtml(r){
+  if (r.self) return `<div class="grades two"><button data-g="miss">Not yet</button><button data-g="hit" class="suggest">Got it</button></div><p class="swipe-hint small muted">Swipe right for Got it, left for Not yet</p>`;
+  return `<div class="grades one"><button data-g="next" class="suggest">Next</button></div><p class="swipe-hint small muted">Swipe to continue</p>`;
+}
+function checkGaps(r, it){
+  if (r.revealed) return;
+  r.typed = it.gaps.map((alts, k) => { const v = ($("#g" + k)?.value || "").trim(); return { v, ok: gapOk(v, alts) }; });
+  revealOn(r, r.typed.every(t => t.ok));
+}
+function compareModel(r, it){
+  if (r.revealed) return;
+  r.text = ($("#answer")?.value || "").trim();
+  if (r.text && normVerb(r.text) === normVerb(it.full)){ r.self = false; revealOn(r, true); return; }
+  r.self = true; revealOn(r, null);
+}
+async function checkGramWrite(r, it){
+  if (r.checking || r.revealed) return;
+  const text = ($("#answer")?.value || "").trim(); if (!text) return;
+  if (!aiReady()) return compareModel(r, it);
+  const idx = r.i;
+  r.checking = true; r.error = null; r.text = text; renderMain();
+  try {
+    const fb = await judgeConditional({ type: it.type, text, word: r.mode === "write" ? state.words[it.word] : null, facts: r.mode === "rewrite" ? it.facts : "", model: it.full });
+    if (!alive(r, idx)) return;
+    r.checking = false; r.fb = fb; r.self = false; revealOn(r, fb.verdict !== "off");
+  } catch (e){
+    if (!alive(r, idx)) return;
+    r.checking = false; r.error = aiFail(shapeError(e)); render();
+  }
+}
+function recordGrammar(id, type, correct){
+  const g = state.grammar, key = statKey(type);
+  const s = g.stats[key] = { right: 0, total: 0, ...(g.stats[key] || {}) };
+  s.total++; if (correct) s.right++;
+  if (id){
+    const p = g.items[id] = { right: 0, wrong: 0, ...(g.items[id] || {}) };
+    if (correct) p.right++; else p.wrong++;
+    p.last = new Date().toISOString();
+  }
+  g.updatedAt = new Date().toISOString();
+  saveGrammar();
+}
+function renderGrammarStart(){
+  const f = state.settings.gfocus || "all", ai = aiReady();
+  const count = allItems().filter(it => focusMatch(it.type, f)).length;
+  const meters = STAT_KEYS.map(k => {
+    const s = state.grammar.stats[k] || { right: 0, total: 0 }, pct = s.total ? Math.round(s.right / s.total * 100) : 0;
+    const cls = s.total < 3 ? "" : pct >= 80 ? "good" : pct >= 50 ? "warn" : "bad";
+    return `<div class="meter"><span>${STAT_LABEL[k]}</span><span class="bar" role="img" aria-label="${s.right} of ${s.total} right"><i class="${cls}" style="width:${pct}%"></i></span><span class="val">${s.total ? `${s.right} of ${s.total}` : "not yet"}</span></div>`;
+  }).join("");
+  const cheats = TYPE_ORDER.map((k, i) => {
+    const T = TYPES[k], ex = STATIC_ITEMS.find(it => it.type === k);
+    return `<details class="rule-d"${i === 2 ? " open" : ""}><summary><b>${esc(cap(T.name))}</b><code>${esc(T.form)}</code></summary><p>${esc(T.use)}</p>${ex ? `<p class="ex">${markWord(esc(ex.full), wordText(ex.word))}</p>` : ""}</details>`;
+  }).join("");
+  const note = state.gramNote;
+  main.innerHTML = `
+  <section class="card start">
+    <h3>Conditionals</h3>
+    <p class="muted">Zero, first, second, third and mixed, built from the words on your list. Each session is ${GSESSION} cards: fill in the verbs, name the conditional and rewrite a situation${ai ? ", plus your own sentences for Claude to check" : ""}.</p>
+    <div class="answer-by"><span class="label">Focus</span><div class="chips" role="group" aria-label="Focus">${FOCUS.map(k => `<button data-focus="${k}" aria-pressed="${k === f}">${k === "all" ? "All" : STAT_LABEL[k]}</button>`).join("")}</div></div>
+    <div class="answer-by"><span class="label">Answer by</span>${segHtml()}</div>
+    <div class="row center mt"><button class="btn hl big" id="btn-gstart">Start practice</button></div>
+    <p class="hint">${plural(count, "exercise")} in this focus.</p>
+    ${ai ? `<div class="row center mt"><button class="btn" id="btn-gen" ${state.gramBusy ? "disabled" : ""}>${state.gramBusy ? "Writing exercises…" : "Make new exercises from my words"}</button></div>` : ""}
+    ${note ? `<div class="banner ${note.kind}">${esc(note.text)}</div>` : ""}
+  </section>
+  <section class="card">
+    <p class="label">How you're doing</p>
+    <div class="meters">${meters}</div>
+    <p class="hint">Conditionals you write in word reviews count here too.</p>
+  </section>
+  <section class="card">
+    <p class="label">Cheat sheet</p>
+    ${cheats}
+    <p class="hint">Also useful: <b>could</b> or <b>might</b> can replace would. <b>Unless</b> means “if not”. In formal English you can drop if and swap the order: “Had we tested on Android, we would have caught it.”</p>
+  </section>`;
+  $$("[data-focus]", main).forEach(b => b.onclick = () => { state.settings.gfocus = b.dataset.focus; saveSettings(); renderMain(); });
+  $("#btn-gstart").onclick = startGrammar;
+  $("#btn-gen")?.addEventListener("click", makeExercises);
+  wireSeg();
+}
+async function makeExercises(){
+  if (!aiReady() || state.gramBusy) return;
+  const withMeaning = Object.values(state.words).filter(w => w.meaning);
+  const fresh = shuffle(withMeaning.filter(w => status(w) === "new" || isDue(w)));
+  const words = [...fresh, ...shuffle(withMeaning.filter(w => !fresh.includes(w)))].slice(0, 8);
+  if (!words.length) return;
+  const f = state.settings.gfocus || "all";
+  const mixText = f === "all" ? "a mix: mostly second, third, mixed_past and mixed_present, plus one first" : f === "mixed" ? "mixed_past and mixed_present" : f;
+  state.gramBusy = true; state.gramNote = { kind: "", text: "Writing new exercises with your words… this takes a moment." }; renderMain();
+  try {
+    const res = await askJson(`Create ${words.length} fill-in-the-verbs exercises on English conditionals for a product designer who is learning English at a travel-tech company. Use each word or phrase below exactly once, in a natural workplace sentence (product design, mobile apps, travel).
+Conditional types: ${mixText}. Types: zero (if + present, present), first (if + present, will + verb), second (if + past simple, would + verb), third (if + past perfect, would have + past participle), mixed_past (if + past perfect, would + verb), mixed_present (if + past simple, would have + past participle).
+
+For each exercise return: "type"; "word" (the word exactly as given); "text" (the full sentence with exactly two verb gaps, one in each clause, written in square brackets, e.g. "If we [had tested] on Android, we [would have caught] the bug."); "hints" (the base verb for each gap, with "not" for negatives, e.g. ["test", "catch"]); "wrong" (three wrong answer pairs written "x / y", each built like a different conditional type); "facts" (the real situation in one short sentence, so that only the correct answer fits).
+
+Words:
+${words.map(w => "- " + w.word).join("\n")}
+
+Reply with only a JSON object of the form {"items": [...]}.`, SCHEMAS.gen, "default");
+    const stamp = Date.now(), added = [];
+    (res && Array.isArray(res.items) ? res.items : []).forEach((x, k) => {
+      const w = words.find(w => norm(w.word) === norm(x && x.word));
+      if (!w) return;
+      const clean = s => String(s || "").replace(/\|/g, "/").trim();
+      const rec = { id: `ai:${stamp}:${k}`, type: ({ mixed_past: "mixedPast", mixed_present: "mixedPresent" })[x.type] || x.type, word: w.slug,
+        text: String(x.text || ""), hints: (x.hints || []).map(clean).join("|"), wrong: (x.wrong || []).map(clean).join("|"), facts: clean(x.facts) };
+      if (validItem(compileItem([rec.type, rec.word, rec.text, rec.hints, rec.wrong, rec.facts], rec.id))) added.push(rec);
+    });
+    state.grammar.extra = [...(state.grammar.extra || []), ...added].slice(-120);
+    saveGrammar(true);
+    state.gramNote = added.length
+      ? { kind: "good", text: `Added ${plural(added.length, "new exercise")} built from your words. They come first in your next practice.` }
+      : { kind: "bad", text: "Claude's exercises didn't pass the format check. Try again." };
+  } catch (e){ console.warn(e); state.gramNote = { kind: "bad", text: aiFail(shapeError(e)) }; }
+  state.gramBusy = false; render();
+}
+async function judgeConditional({ type, text, word, facts, model }){
+  const T = TYPES[type];
+  const task = facts ? `Rewrite this situation as one ${T.name} sentence: "${facts}"` : `Write a ${T.name} sentence${word ? ` that uses "${word.word}" (${word.meaning})` : ""}.`;
+  const r = await askJson(`A non-native English speaker (a product designer at a travel-tech company) is practicing English conditionals.
+Task: ${task}
+Target structure: ${T.name}, ${T.form}. Use: ${T.use}${model ? `\nA model answer: "${model}"` : ""}
+They wrote: "${text}"
+
+Judge it as a friendly English teacher would. Different wording from the model is fine if the grammar and meaning work. Return only a JSON object:
+{"verdict": "natural" | "ok" | "off", "type_used": "zero" | "first" | "second" | "third" | "mixed" | "none", "corrected": "<the sentence with minimal fixes>", "feedback": "<1-2 short sentences: whether the conditional is right and which verb forms to fix${word ? ", and whether the word is used correctly" : ""}>", "alternative": "<one more natural way to say it with the same conditional>"}
+"natural" = the target conditional, correct and natural; "ok" = the target conditional with small slips; "off" = a different conditional, wrong verb forms${word ? ", or the word is misused" : ""}.`, SCHEMAS.cond, "quick");
+  const verdict = ["natural", "ok", "off"].includes(r && r.verdict) ? r.verdict : "ok";
+  return { verdict, typeUsed: String((r && r.type_used) || ""), corrected: String((r && r.corrected) || ""), feedback: String((r && r.feedback) || ""), alternative: String((r && r.alternative) || "") };
+}
+function normalizeGrammar(d){
+  const g = d ? JSON.parse(JSON.stringify(d)) : {};
+  return { stats: g.stats && typeof g.stats === "object" ? g.stats : {}, items: g.items && typeof g.items === "object" ? g.items : {}, extra: Array.isArray(g.extra) ? g.extra : [], updatedAt: g.updatedAt || "" };
+}
+function mergeGrammar(cur, inc){
+  const out = normalizeGrammar(cur), add = normalizeGrammar(inc);
+  for (const [k, s] of Object.entries(add.stats)) if (!out.stats[k] || (s.total || 0) > (out.stats[k].total || 0)) out.stats[k] = s;
+  for (const [id, p] of Object.entries(add.items)) if (!out.items[id] || (p.last || "") > (out.items[id].last || "")) out.items[id] = p;
+  const ids = new Set(out.extra.map(x => x.id));
+  for (const x of add.extra) if (x && x.id && !ids.has(x.id)) out.extra.push(x);
+  out.extra = out.extra.slice(-120);
+  out.updatedAt = new Date().toISOString();
+  return out;
 }
 
 // ---------- add, settings, backup ----------
@@ -884,7 +1343,7 @@ async function copyBackup(){
     toast("Copy the selected text");
   }
 }
-function backupText(){ return JSON.stringify({ app: "after-hours-words", version: 1, exportedAt: new Date().toISOString(), words: Object.values(state.words) }); }
+function backupText(){ return JSON.stringify({ app: "after-hours-words", version: 2, exportedAt: new Date().toISOString(), words: Object.values(state.words), grammar: state.grammar }); }
 async function saveBackupFile(){
   const name = `after-hours-words-${today()}.json`;
   const blob = new Blob([backupText()], { type: "application/json" });
@@ -926,8 +1385,10 @@ async function importBackup(text){
   }
   for (const d of changed){ state.words[d.slug] = d; state.deleted.delete(d.slug); }
   await writeMany(changed);
+  const hasGrammar = data && !Array.isArray(data) && data.grammar;
+  if (hasGrammar){ state.grammar = mergeGrammar(state.grammar, data.grammar); saveGrammar(true); }
   state.resetDrafts.add("backup-in");
-  state.backupNote = { kind: "good", text: `Imported ${plural(added, "new word")} and updated ${plural(updated, "word")}.` };
+  state.backupNote = { kind: "good", text: `Imported ${plural(added, "new word")} and updated ${plural(updated, "word")}.${hasGrammar ? " Conditionals progress was merged too." : ""}` };
   render();
 }
 
@@ -941,6 +1402,13 @@ const SCHEMAS = {
     type: "object", additionalProperties: false, required: ["heard", "word", "pos", "meaning", "gloss", "examples", "tip"], properties: {
       heard: { type: "string" }, word: { type: "string" }, pos: { type: "string" }, meaning: { type: "string" }, gloss: { type: "string" },
       examples: { type: "array", items: { type: "string" } }, tip: { type: "string" } } } } } },
+  cond: { type: "object", additionalProperties: false, required: ["verdict", "type_used", "corrected", "feedback", "alternative"], properties: {
+    verdict: { type: "string", enum: ["natural", "ok", "off"] }, type_used: { type: "string", enum: ["zero", "first", "second", "third", "mixed", "none"] },
+    corrected: { type: "string" }, feedback: { type: "string" }, alternative: { type: "string" } } },
+  gen: { type: "object", additionalProperties: false, required: ["items"], properties: { items: { type: "array", items: {
+    type: "object", additionalProperties: false, required: ["type", "word", "text", "hints", "wrong", "facts"], properties: {
+      type: { type: "string", enum: ["zero", "first", "second", "third", "mixed_past", "mixed_present"] }, word: { type: "string" }, text: { type: "string" },
+      hints: { type: "array", items: { type: "string" } }, wrong: { type: "array", items: { type: "string" } }, facts: { type: "string" } } } } } },
 };
 let sdkPromise = null, clientCache = null;
 function loadSdk(){
@@ -1077,9 +1545,13 @@ Judge it as a friendly colleague would. Return only a JSON object:
   const verdict = ["natural", "ok", "off"].includes(r && r.verdict) ? r.verdict : "ok";
   return { verdict, corrected: String((r && r.corrected) || ""), feedback: String((r && r.feedback) || ""), alternative: String((r && r.alternative) || "") };
 }
-function feedbackHtml(r, text, withKeep){
+function feedbackHtml(r, text, withKeep, expectType){
+  const used = r.typeUsed, want = expectType ? statKey(expectType) : "";
+  const typeNote = want && used && used !== want
+    ? `<p class="small"><b>${used === "none" ? "This isn't a conditional yet." : `This is a ${STAT_LABEL[used] ? STAT_LABEL[used].toLowerCase() : used} conditional.`}</b> The task asked for a ${esc(TYPES[expectType].name)}.</p>` : "";
   return `<div class="feedback ${r.verdict}">
       <div class="verdict">${r.verdict === "natural" ? "Sounds natural" : r.verdict === "ok" ? "Almost there" : "Not quite right"}</div>
+      ${typeNote}
       ${r.corrected && norm(r.corrected) !== norm(text) ? `<p><b>Fixed:</b> ${esc(r.corrected)}</p>` : ""}
       <p>${esc(r.feedback)}</p>
       ${r.alternative ? `<p class="alt">A colleague might say: “${esc(r.alternative)}”</p>` : ""}
@@ -1126,24 +1598,28 @@ $("#nav").addEventListener("click", e => {
   if (v === "learn" && state.view === "learn" && state.detail){ closeDetail(); return; }
   state.view = v;
   if (state.review && state.review.i >= state.review.queue.length) state.review = null;
+  if (state.gsession && state.gsession.i >= state.gsession.queue.length) state.gsession = null;
   render(); window.scrollTo(0, 0);
 });
 list.addEventListener("click", e => { const b = e.target.closest("button[data-slug]"); if (b) openWord(b.dataset.slug); });
 $("#search").addEventListener("input", e => { state.filter = e.target.value; renderList(); });
 window.addEventListener("popstate", () => { if (state.detail){ state.detail = false; render(); restoreListScroll(); } });
 document.addEventListener("keydown", e => {
-  const r = state.review;
-  if (state.view !== "review" || !r || r.i >= r.queue.length || e.metaKey || e.ctrlKey || e.altKey) return;
+  const r = sess();
+  if (!r || r.i >= r.queue.length || e.metaKey || e.ctrlKey || e.altKey) return;
   const t = e.target, tag = t && t.tagName;
   if (tag === "INPUT" || tag === "TEXTAREA") return;
   const activate = e.key === "Enter" || e.key === " ";
   if (tag === "BUTTON" && activate) return;
+  const gram = r.queue[r.i].kind === "gram";
   if (!r.revealed){
-    if (r.mode === "choice"){ const i = { 1: 0, 2: 1, 3: 2, 4: 3 }[e.key]; if (i !== undefined){ e.preventDefault(); pickOption(i); } }
-    else if (r.mode !== "write" && r.tap && activate){ e.preventDefault(); reveal(null); }
+    if (r.options && /^[1-9]$/.test(e.key)){ const i = Number(e.key) - 1; if (i < r.options.length){ e.preventDefault(); pickOption(i); } }
+    else if (!gram && r.mode !== "write" && r.tap && activate){ e.preventDefault(); revealOn(r, null); }
     return;
   }
-  const g = { 1: "again", 2: "good", 3: "easy" }[e.key] || (activate ? suggested(r) : null);
+  let g = null;
+  if (gram) g = r.self ? ({ 1: "miss", 2: "hit" }[e.key] || (activate ? "hit" : null)) : (activate ? "next" : null);
+  else g = { 1: "again", 2: "good", 3: "easy" }[e.key] || (activate ? suggested(r) : null);
   if (g){ e.preventDefault(); gradeCard(g, r.i); }
 });
 narrowMq.addEventListener && narrowMq.addEventListener("change", () => render());
@@ -1154,6 +1630,7 @@ function bootLocal(){
   state.words = lsRead(LS.words, {}) || {};
   state.deleted = new Set(lsRead(LS.deleted, []) || []);
   state.apiKey = IN_ARTIFACT ? "" : String(lsRead(LS.key, "") || "");
+  state.grammar = normalizeGrammar(lsRead(LS.grammar, null));
   state.loading = !Object.keys(state.words).length;
   render();
   loadSeed();
@@ -1183,6 +1660,7 @@ async function bootArtifact(){
   state.sample = sample || null;
   if (!db){ bootLocal(); return; }
   state.db = db;
+  db.doc(GRAMMAR_DOC).get().then(s => { if (s.exists){ state.grammar = mergeGrammar(state.grammar, s.data()); render(); } }).catch(e => console.warn(e));
   db.collection("words").onSnapshot(snap => {
     const next = {};
     snap.docs.forEach(d => { const v = d.data(); if (v && v.word) next[v.slug || d.id] = v; });
